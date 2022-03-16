@@ -16,7 +16,6 @@ class NftPageBody extends StatefulWidget {
 }
 
 class _NftPageBodyState extends State<NftPageBody> {
-
   PageController pageController = PageController(viewportFraction: 0.85);
   var _currPageValue = 0.0;
   double _scaleFactor = 0.8;
@@ -97,9 +96,9 @@ class _NftPageBodyState extends State<NftPageBody> {
         children: [
           Container(
             height: Dimensions.pageViewContainer,
-            margin: EdgeInsets.only(left: 10, right: 10),
+            margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(Dimensions.radius30),
                 color: index.isEven ? Color(0xFF7d5fff) : Color(0xFFf9ca24),
                 image: DecorationImage(
                     fit: BoxFit.cover,
@@ -109,9 +108,9 @@ class _NftPageBodyState extends State<NftPageBody> {
             alignment: Alignment.bottomCenter,
             child: Container(
               height: Dimensions.pageViewTextContainer,
-              margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+              margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, bottom: Dimensions.height30),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(Dimensions.radius20),
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
@@ -120,14 +119,15 @@ class _NftPageBodyState extends State<NftPageBody> {
                         offset: Offset(0, 5)),
                   ]),
               child: Container(
-                padding: EdgeInsets.only(top: 10, left: 15, right: 15),
+                padding: EdgeInsets.only(top: Dimensions.height15, left: Dimensions.height15, right: Dimensions.height15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     BigText(text: "Prime Ape"),
                     SizedBox(
-                      height: 10,
+                      height: Dimensions.height10,
                     ),
+                    //comments section
                     Row(
                       children: [
                         Wrap(
@@ -154,8 +154,9 @@ class _NftPageBodyState extends State<NftPageBody> {
                       ],
                     ),
                     SizedBox(
-                      height: 20,
+                      height: Dimensions.height20,
                     ),
+                    //Price and Popularity
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
