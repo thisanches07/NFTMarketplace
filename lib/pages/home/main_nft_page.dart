@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:nftmarketplace/home/nft_page_body.dart';
 import 'package:nftmarketplace/utils/colors.dart';
 import 'package:nftmarketplace/widgets/big_text.dart';
 import 'package:nftmarketplace/widgets/small_text.dart';
 
-import '../utils/dimensions.dart';
+import '../../utils/dimensions.dart';
+import 'nft_page_body.dart';
+
+
+
+
 
 class MainNFTPage extends StatefulWidget {
   const MainNFTPage({Key? key}) : super(key: key);
@@ -18,6 +22,7 @@ class _MainNFTPageState extends State<MainNFTPage> {
   Widget build(BuildContext context) {
     print("this current height is " + MediaQuery.of(context).size.height.toString());
     return Scaffold(
+      backgroundColor: AppColors.backgroundColor,
       body: Column(
         children: [
           //showing the header

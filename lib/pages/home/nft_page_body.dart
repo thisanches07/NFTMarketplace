@@ -6,7 +6,7 @@ import 'package:nftmarketplace/widgets/big_text.dart';
 import 'package:nftmarketplace/widgets/icon_and_text_widget.dart';
 import 'package:nftmarketplace/widgets/small_text.dart';
 
-import '../utils/dimensions.dart';
+import '../../utils/dimensions.dart';
 
 class NftPageBody extends StatefulWidget {
   const NftPageBody({Key? key}) : super(key: key);

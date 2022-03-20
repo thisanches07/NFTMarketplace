@@ -8,4 +8,5 @@ class AppColors{
   static final Color starColor = const Color(0xFFfbaa1a);
   static final Color moneyColor = const Color(0xFF3ae374);
   static final Color ageColor = const Color(0xFF712ac1);
+  static final Color backgroundColor = const Color(0xFFFFFFFF);
 }
