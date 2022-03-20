@@ -54,7 +54,9 @@ class _MainNFTPageState extends State<MainNFTPage> {
               )
           ),
           //showing the body
-          NftPageBody(),
+          Expanded(child: SingleChildScrollView(
+            child: NftPageBody(),
+          )),
         ],
       ),
     );

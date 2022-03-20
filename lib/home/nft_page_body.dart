@@ -40,6 +40,7 @@ class _NftPageBodyState extends State<NftPageBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        //slider section
         Container(
           height: Dimensions.pageView,
           child: PageView.builder(
@@ -49,6 +50,7 @@ class _NftPageBodyState extends State<NftPageBody> {
                 return _buildPageItem(position);
               }),
         ),
+        //dots
         new DotsIndicator(
           dotsCount: 5,
           position: _currPageValue,
@@ -59,7 +61,102 @@ class _NftPageBodyState extends State<NftPageBody> {
             activeShape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5.0)),
           ),
-        )
+        ),
+        //popular text
+        SizedBox(height: Dimensions.height30,),
+        Container(
+          margin: EdgeInsets.only(left: Dimensions.width30),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              BigText(text: "Popular"),
+              SizedBox(width: Dimensions.width10,),
+              Container(
+                margin: const EdgeInsets.only(bottom: 3),
+                child: BigText(text: ".", color: Colors.black26,),
+              ),
+              SizedBox(width: Dimensions.width10,),
+              Container(
+                margin: const EdgeInsets.only(bottom: 3),
+                child: SmallText(text: "NFT pairing"),
+              )
+            ],
+          ),
+        ),
+        //list of nfts
+       Container(
+         height: 900,
+         child:  ListView.builder(
+           physics: NeverScrollableScrollPhysics(),
+             itemCount: 10,
+             itemBuilder: (context,index){
+               return Container(
+                 margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, bottom: Dimensions.height10),
+                 child: Row(
+                   children: [
+                     //image section
+                     Container(
+                       width:Dimensions.listViewImgSize,
+                       height: Dimensions.listViewImgSize,
+                       decoration: BoxDecoration(
+                           borderRadius: BorderRadius.circular(Dimensions.radius30),
+                           color: Colors.white38,
+                           image: DecorationImage(
+                             fit: BoxFit.cover,
+                               image: AssetImage(
+                                   "assets/image/primeApe2.jpg"
+                               )
+                           )
+                       ),
+                     ),
+                     //text container
+                     Expanded(
+                       child: Container(
+                         height: Dimensions.listViewTextContSize,
+                         decoration: BoxDecoration(
+                           borderRadius: BorderRadius.only(
+                             topRight: Radius.circular(Dimensions.radius20),
+                             bottomRight: Radius.circular(Dimensions.radius20),
+                           ),
+                           color: Colors.white,
+                         ),
+                           child: Padding(
+                             padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width15,bottom: Dimensions.height15),
+                             child: Column(
+                               crossAxisAlignment: CrossAxisAlignment.start,
+                               mainAxisAlignment: MainAxisAlignment.center,
+                               children: [
+                                 BigText(text: "Prime Ape Bitcoin edition"),
+                                 SizedBox(height: Dimensions.height10,),
+                                 SmallText(text: "Limited Edition"),
+                                 SizedBox(height: Dimensions.height10,),
+                                 Row(
+                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                   children: [
+                                     IconAndTextWidget(
+                                         icon: Icons.whatshot_outlined,
+                                         text: "Rare",
+                                         iconColor: AppColors.starColor),
+                                     IconAndTextWidget(
+                                         icon: Icons.monetization_on,
+                                         text: "High",
+                                         iconColor: AppColors.moneyColor),
+                                     IconAndTextWidget(
+                                         icon: Icons.workspace_premium_sharp,
+                                         text: "old",
+                                         iconColor: AppColors.ageColor)
+                                   ],
+                                 )
+                               ],
+                             ),
+                           )
+                       ),
+                     )
+                   ],
+                 ),
+               );
+             }),
+       )
       ],
     );
   }
