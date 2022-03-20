@@ -84,10 +84,11 @@ class _NftPageBodyState extends State<NftPageBody> {
           ),
         ),
         //list of nfts
-       Container(
-         height: 900,
-         child:  ListView.builder(
+
+
+           ListView.builder(
            physics: NeverScrollableScrollPhysics(),
+             shrinkWrap: true,
              itemCount: 10,
              itemBuilder: (context,index){
                return Container(
@@ -156,7 +157,6 @@ class _NftPageBodyState extends State<NftPageBody> {
                  ),
                );
              }),
-       )
       ],
     );
   }
