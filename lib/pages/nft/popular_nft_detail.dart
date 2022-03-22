@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nftmarketplace/widgets/app_column.dart';
 import 'package:nftmarketplace/widgets/app_icon.dart';
+import 'package:nftmarketplace/widgets/expandable_text_widget.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
@@ -17,6 +18,7 @@ class PopularNftDetail extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
+          //background image
           Positioned(
               left: 0,
               right: 0,
@@ -28,6 +30,7 @@ class PopularNftDetail extends StatelessWidget {
                         fit: BoxFit.cover,
                         image: AssetImage("assets/image/primeApe1.jpg"))),
               )),
+          //icon widgets
           Positioned(
             top: Dimensions.height45,
             left: Dimensions.width20,
@@ -40,6 +43,7 @@ class PopularNftDetail extends StatelessWidget {
               ],
             ),
           ),
+          //introduction of nft
           Positioned(
               left: 0,
               right: 0,
@@ -61,10 +65,15 @@ class PopularNftDetail extends StatelessWidget {
                   children: [
                     AppColumn(text: "Prime Ape"),
                     SizedBox(height: Dimensions.height20,),
-                    BigText(text: "Introduce")
+                    BigText(text: "Introduce"),
+                    SizedBox(height: Dimensions.height20,),
+                    Expanded(child: SingleChildScrollView(child: ExpandableTextWidget(text: "Plenty of apes came before. But most were mere chimpanzees without any real form or function in the Metaverse. The Primus Ethereum Mammal, also known as the Prime Ape, is different. Plenty of apes came before. But most were mere chimpanzees without any real form or function in the Metaverse. The Primus Ethereum Mammal, also known as the Prime Ape, is different. Plenty of apes came before. But most were mere chimpanzees without any real form or function in the Metaverse. The Primus Ethereum Mammal, also known as the Prime Ape, is different")))
                   ],
                 ),
               ))
+
+
+
         ],
       ),
       bottomNavigationBar: Container(

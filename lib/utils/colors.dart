@@ -10,4 +10,5 @@ class AppColors{
   static final Color ageColor = const Color(0xFF712ac1);
   static final Color backgroundColor = const Color(0xFFFFFFFF);
   static final Color signColor = const Color(0xFFADADAD);
+  static final Color paraColor = const Color(0xFF575757);
 }
