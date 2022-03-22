@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nftmarketplace/pages/nft/popular_nft_detail.dart';
+import 'package:nftmarketplace/pages/nft/recommended_nft_detail.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: PopularNftDetail(),
+      home: RecommendedNftDetail(),
     );
   }
 }
