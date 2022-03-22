@@ -2,6 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nftmarketplace/utils/colors.dart';
+import 'package:nftmarketplace/widgets/app_column.dart';
 import 'package:nftmarketplace/widgets/big_text.dart';
 import 'package:nftmarketplace/widgets/icon_and_text_widget.dart';
 import 'package:nftmarketplace/widgets/small_text.dart';
@@ -217,62 +218,7 @@ class _NftPageBodyState extends State<NftPageBody> {
                   ]),
               child: Container(
                 padding: EdgeInsets.only(top: Dimensions.height15, left: Dimensions.height15, right: Dimensions.height15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    BigText(text: "Prime Ape"),
-                    SizedBox(
-                      height: Dimensions.height10,
-                    ),
-                    //comments section
-                    Row(
-                      children: [
-                        Wrap(
-                          children: List.generate(5, (index) {
-                            return Icon(
-                              Icons.star,
-                              color: AppColors.mainColor,
-                              size: 15,
-                            );
-                          }),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        SmallText(text: "4.5"),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        SmallText(text: "1234"),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        SmallText(text: "comments")
-                      ],
-                    ),
-                    SizedBox(
-                      height: Dimensions.height20,
-                    ),
-                    //Price and Popularity
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconAndTextWidget(
-                            icon: Icons.whatshot_outlined,
-                            text: "Rare",
-                            iconColor: AppColors.starColor),
-                        IconAndTextWidget(
-                            icon: Icons.monetization_on,
-                            text: "High",
-                            iconColor: AppColors.moneyColor),
-                        IconAndTextWidget(
-                            icon: Icons.workspace_premium_sharp,
-                            text: "old",
-                            iconColor: AppColors.ageColor)
-                      ],
-                    )
-                  ],
-                ),
+                child: AppColumn(text: "Prime Ape",),
               ),
             ),
           )

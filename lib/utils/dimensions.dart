@@ -21,7 +21,9 @@ class Dimensions {
   static double width20 = screenHeight / 34.6;
   static double width30 = screenHeight / 23.06;
 
+  //font size
   static double font20 = screenHeight / 42.2;
+  static double font26 = screenHeight / 32.46;
 
   //radius
   static double radius15 = screenHeight / 46.13;
@@ -39,4 +41,7 @@ class Dimensions {
 
   //popular nft
   static double popularNftImageSize = screenHeight / 2.41;
+
+  //bottom height
+static double bottomHeightBar = screenHeight/6.5;
 }

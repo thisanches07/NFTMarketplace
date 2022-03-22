@@ -9,4 +9,5 @@ class AppColors{
   static final Color moneyColor = const Color(0xFF3ae374);
   static final Color ageColor = const Color(0xFF712ac1);
   static final Color backgroundColor = const Color(0xFFFFFFFF);
+  static final Color signColor = const Color(0xFFADADAD);
 }
