@@ -7,6 +7,6 @@ class PopularNftRepo extends GetxService{
   PopularNftRepo({required this.apiClient});
 
   Future<Response> getPopularNftList() async{
-    return await apiClient.getData("https://www.marketplace.com/api/nft/list");
+    return await apiClient.getData("/nfts/popular");
   }
 }
