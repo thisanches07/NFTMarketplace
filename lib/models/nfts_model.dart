@@ -19,7 +19,7 @@ class Nft {
     if (json['nfts'] != null) {
       _nfts = <NftModel>[];
       json['nfts'].forEach((v) {
-        _nfts!.add(NftModel.fromJson(v));
+        _nfts.add(NftModel.fromJson(v));
       });
     }
   }
@@ -29,7 +29,7 @@ class NftModel {
   int? id;
   String? name;
   String? description;
-  int? price;
+  double? price;
   int? stars;
   String? img;
   String? location;
