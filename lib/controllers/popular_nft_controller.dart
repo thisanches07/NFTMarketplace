@@ -13,8 +13,7 @@ class PopularNftController extends GetxController{
     if(response.statusCode == 200){
       print("got nfts");
       _popularNftList=[];
-     _popularNftList.addAll(Nft.fromJson(response.body).nfts);
-    //  print(_popularNftList);
+      _popularNftList.addAll(Nft.fromJson(response.body).nfts);
       update();
     }else{
       print("nothing");
