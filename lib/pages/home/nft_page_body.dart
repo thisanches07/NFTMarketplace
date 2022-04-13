@@ -9,6 +9,7 @@ import 'package:nftmarketplace/widgets/big_text.dart';
 import 'package:nftmarketplace/widgets/icon_and_text_widget.dart';
 import 'package:nftmarketplace/widgets/small_text.dart';
 
+import '../../controllers/recommended_product_controller.dart';
 import '../../utils/dimensions.dart';
 import 'package:get/get.dart';
 
@@ -107,84 +108,90 @@ class _NftPageBodyState extends State<NftPageBody> {
         ),
         //list of nfts
 
-        ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: 10,
-            itemBuilder: (context, index) {
-              return Container(
-                margin: EdgeInsets.only(
-                    left: Dimensions.width20,
-                    right: Dimensions.width20,
-                    bottom: Dimensions.height10),
-                child: Row(
-                  children: [
-                    //image section
-                    Container(
-                      width: Dimensions.listViewImgSize,
-                      height: Dimensions.listViewImgSize,
-                      decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular(Dimensions.radius30),
-                          color: Colors.white38,
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage("assets/image/primeApe2.jpg"))),
-                    ),
-                    //text container
-                    Expanded(
-                      child: Container(
-                          height: Dimensions.listViewTextContSize,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(Dimensions.radius20),
-                              bottomRight: Radius.circular(Dimensions.radius20),
+        GetBuilder<RecommendedNftController>(builder: (recommendedNft){
+          return recommendedNft.isLoaded?ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: recommendedNft.recommendedNftList.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  margin: EdgeInsets.only(
+                      left: Dimensions.width20,
+                      right: Dimensions.width20,
+                      bottom: Dimensions.height10),
+                  child: Row(
+                    children: [
+                      //image section
+                      Container(
+                        width: Dimensions.listViewImgSize,
+                        height: Dimensions.listViewImgSize,
+                        decoration: BoxDecoration(
+                            borderRadius:
+                            BorderRadius.circular(Dimensions.radius30),
+                            color: Colors.white38,
+                            image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: NetworkImage(
+                                    recommendedNft.recommendedNftList[index].img!
+                                ))),
+                      ),
+                      //text container
+                      Expanded(
+                        child: Container(
+                            height: Dimensions.listViewTextContSize,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(Dimensions.radius20),
+                                bottomRight: Radius.circular(Dimensions.radius20),
+                              ),
+                              color: Colors.white,
                             ),
-                            color: Colors.white,
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                                left: Dimensions.width10,
-                                right: Dimensions.width15,
-                                bottom: Dimensions.height15),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                BigText(text: "Prime Ape Bitcoin edition"),
-                                SizedBox(
-                                  height: Dimensions.height10,
-                                ),
-                                SmallText(text: "Limited Edition"),
-                                SizedBox(
-                                  height: Dimensions.height10,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    IconAndTextWidget(
-                                        icon: Icons.whatshot_outlined,
-                                        text: "Rare",
-                                        iconColor: AppColors.starColor),
-                                    IconAndTextWidget(
-                                        icon: Icons.monetization_on,
-                                        text: "High",
-                                        iconColor: AppColors.moneyColor),
-                                    IconAndTextWidget(
-                                        icon: Icons.workspace_premium_sharp,
-                                        text: "old",
-                                        iconColor: AppColors.ageColor)
-                                  ],
-                                )
-                              ],
-                            ),
-                          )),
-                    )
-                  ],
-                ),
-              );
-            }),
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: Dimensions.width10,
+                                  right: Dimensions.width15,
+                                  bottom: Dimensions.height15),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  BigText(text: recommendedNft.recommendedNftList[index].name),
+                                  SizedBox(
+                                    height: Dimensions.height10,
+                                  ),
+                                  SmallText(text: recommendedNft.recommendedNftList[index].description),
+                                  SizedBox(
+                                    height: Dimensions.height10,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      IconAndTextWidget(
+                                          icon: Icons.whatshot_outlined,
+                                          text: "Rare",
+                                          iconColor: AppColors.starColor),
+                                      IconAndTextWidget(
+                                          icon: Icons.monetization_on,
+                                          text: "High",
+                                          iconColor: AppColors.moneyColor),
+                                      IconAndTextWidget(
+                                          icon: Icons.workspace_premium_sharp,
+                                          text: "old",
+                                          iconColor: AppColors.ageColor)
+                                    ],
+                                  )
+                                ],
+                              ),
+                            )),
+                      )
+                    ],
+                  ),
+                );
+              }):CircularProgressIndicator(
+            color: AppColors.mainColor,
+          );
+        }),
       ],
     );
   }
