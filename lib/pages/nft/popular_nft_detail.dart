@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:nftmarketplace/pages/home/main_nft_page.dart';
 import 'package:nftmarketplace/widgets/app_column.dart';
 import 'package:nftmarketplace/widgets/app_icon.dart';
 import 'package:nftmarketplace/widgets/expandable_text_widget.dart';
@@ -38,7 +41,12 @@ class PopularNftDetail extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.arrow_back_ios),
+                GestureDetector(
+                  onTap:(){
+                    Get.to(()=>MainNFTPage());
+          },
+                    child:
+                    AppIcon(icon: Icons.arrow_back_ios)),
                 AppIcon(icon: Icons.shopping_cart_outlined)
               ],
             ),

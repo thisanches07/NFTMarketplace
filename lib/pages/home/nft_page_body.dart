@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nftmarketplace/controllers/popular_nft_controller.dart';
 import 'package:nftmarketplace/models/nfts_model.dart';
+import 'package:nftmarketplace/routes/route_helper.dart';
 import 'package:nftmarketplace/utils/colors.dart';
 import 'package:nftmarketplace/widgets/app_column.dart';
 import 'package:nftmarketplace/widgets/big_text.dart';
@@ -49,13 +50,18 @@ class _NftPageBodyState extends State<NftPageBody> {
         GetBuilder<PopularNftController>(builder: (popularNfts) {
           return popularNfts.isLoaded?Container(
             height: Dimensions.pageView,
-            child: PageView.builder(
-                controller: pageController,
-                itemCount: popularNfts.popularNftList.length,
-                itemBuilder: (context, position) {
-                  return _buildPageItem(
-                      position, popularNfts.popularNftList[position]);
-                }),
+            child: GestureDetector(
+              onTap: (){
+                Get.toNamed(RouteHelper.getPopularNft());
+              },
+              child: PageView.builder(
+                  controller: pageController,
+                  itemCount: popularNfts.popularNftList.length,
+                  itemBuilder: (context, position) {
+                    return _buildPageItem(
+                        position, popularNfts.popularNftList[position]);
+                  }),
+            ),
           ):CircularProgressIndicator(
             color: AppColors.mainColor,
           );
@@ -114,78 +120,83 @@ class _NftPageBodyState extends State<NftPageBody> {
               shrinkWrap: true,
               itemCount: recommendedNft.recommendedNftList.length,
               itemBuilder: (context, index) {
-                return Container(
-                  margin: EdgeInsets.only(
-                      left: Dimensions.width20,
-                      right: Dimensions.width20,
-                      bottom: Dimensions.height10),
-                  child: Row(
-                    children: [
-                      //image section
-                      Container(
-                        width: Dimensions.listViewImgSize,
-                        height: Dimensions.listViewImgSize,
-                        decoration: BoxDecoration(
-                            borderRadius:
-                            BorderRadius.circular(Dimensions.radius30),
-                            color: Colors.white38,
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(
-                                    recommendedNft.recommendedNftList[index].img!
-                                ))),
-                      ),
-                      //text container
-                      Expanded(
-                        child: Container(
-                            height: Dimensions.listViewTextContSize,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(Dimensions.radius20),
-                                bottomRight: Radius.circular(Dimensions.radius20),
+                return GestureDetector(
+                  onTap: (){
+                    Get.toNamed(RouteHelper.getRecommendedNft());
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(
+                        left: Dimensions.width20,
+                        right: Dimensions.width20,
+                        bottom: Dimensions.height10),
+                    child: Row(
+                      children: [
+                        //image section
+                        Container(
+                          width: Dimensions.listViewImgSize,
+                          height: Dimensions.listViewImgSize,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                              BorderRadius.circular(Dimensions.radius30),
+                              color: Colors.white38,
+                              image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(
+                                      recommendedNft.recommendedNftList[index].img!
+                                  ))),
+                        ),
+                        //text container
+                        Expanded(
+                          child: Container(
+                              height: Dimensions.listViewTextContSize,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(Dimensions.radius20),
+                                  bottomRight: Radius.circular(Dimensions.radius20),
+                                ),
+                                color: Colors.white,
                               ),
-                              color: Colors.white,
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                  left: Dimensions.width10,
-                                  right: Dimensions.width15,
-                                  bottom: Dimensions.height15),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  BigText(text: recommendedNft.recommendedNftList[index].name),
-                                  SizedBox(
-                                    height: Dimensions.height10,
-                                  ),
-                                  SmallText(text: recommendedNft.recommendedNftList[index].description),
-                                  SizedBox(
-                                    height: Dimensions.height10,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      IconAndTextWidget(
-                                          icon: Icons.whatshot_outlined,
-                                          text: "Rare",
-                                          iconColor: AppColors.starColor),
-                                      IconAndTextWidget(
-                                          icon: Icons.monetization_on,
-                                          text: "High",
-                                          iconColor: AppColors.moneyColor),
-                                      IconAndTextWidget(
-                                          icon: Icons.workspace_premium_sharp,
-                                          text: "old",
-                                          iconColor: AppColors.ageColor)
-                                    ],
-                                  )
-                                ],
-                              ),
-                            )),
-                      )
-                    ],
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    left: Dimensions.width10,
+                                    right: Dimensions.width15,
+                                    bottom: Dimensions.height15),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    BigText(text: recommendedNft.recommendedNftList[index].name),
+                                    SizedBox(
+                                      height: Dimensions.height10,
+                                    ),
+                                    SmallText(text: recommendedNft.recommendedNftList[index].description),
+                                    SizedBox(
+                                      height: Dimensions.height10,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        IconAndTextWidget(
+                                            icon: Icons.whatshot_outlined,
+                                            text: "Rare",
+                                            iconColor: AppColors.starColor),
+                                        IconAndTextWidget(
+                                            icon: Icons.monetization_on,
+                                            text: "High",
+                                            iconColor: AppColors.moneyColor),
+                                        IconAndTextWidget(
+                                            icon: Icons.workspace_premium_sharp,
+                                            text: "old",
+                                            iconColor: AppColors.ageColor)
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              )),
+                        )
+                      ],
+                    ),
                   ),
                 );
               }):CircularProgressIndicator(
