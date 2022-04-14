@@ -10,22 +10,24 @@ class RouteHelper {
   static const String recommendedNft = "/recommended-fnt";
 
   static String getInitial()=>'$initial';
-  static String getPopularNft() => '$popularNft';
-  static String getRecommendedNft() => '$recommendedNft';
+  static String getPopularNft(int pageId) => '$popularNft?pageId=$pageId';
+  static String getRecommendedNft(int pageId) => '$recommendedNft?pageId=$pageId';
 
   static List<GetPage> routes = [
     GetPage(name: initial, page: () => MainNFTPage()),
     GetPage(
         name: popularNft,
         page: () {
-          return PopularNftDetail();
+          var pageId=Get.parameters['pageId'];
+          return PopularNftDetail(pageId:int.parse(pageId!));
         },
         transition:Transition.fadeIn
         ),
     GetPage(
         name: recommendedNft,
         page: () {
-          return RecommendedNftDetail();
+          var pageId=Get.parameters['pageId'];
+          return RecommendedNftDetail(pageId:int.parse(pageId!));
         },
         transition:Transition.fadeIn
     )

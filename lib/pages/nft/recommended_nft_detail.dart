@@ -1,27 +1,41 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:nftmarketplace/controllers/recommended_product_controller.dart';
 import 'package:nftmarketplace/widgets/app_icon.dart';
 import 'package:nftmarketplace/widgets/big_text.dart';
 import 'package:nftmarketplace/widgets/expandable_text_widget.dart';
+import 'package:get/get.dart';
 
+import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 
 class RecommendedNftDetail extends StatelessWidget {
-  const RecommendedNftDetail({Key? key}) : super(key: key);
+  final int pageId;
+
+  const RecommendedNftDetail({Key? key, required this.pageId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var nft = Get.find<RecommendedNftController>().recommendedNftList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             toolbarHeight: 80,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.clear),
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(RouteHelper.getInitial());
+                  },
+                  child: AppIcon(icon: Icons.clear),
+                ),
                 AppIcon(icon: Icons.shopping_cart_outlined)
               ],
             ),
@@ -31,7 +45,7 @@ class RecommendedNftDetail extends StatelessWidget {
                 child: Center(
                     child: BigText(
                         size: Dimensions.font26,
-                        text: "Prime Ape Bitcoin Edition")),
+                        text: nft.name!)),
                 width: double.maxFinite,
                 padding: EdgeInsets.only(top: 5, bottom: 10),
                 decoration: BoxDecoration(
@@ -45,8 +59,8 @@ class RecommendedNftDetail extends StatelessWidget {
             backgroundColor: AppColors.blackColor,
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                "assets/image/primeApe2.jpg",
+              background: Image.network(
+                nft.img!,
                 width: double.maxFinite,
                 fit: BoxFit.cover,
               ),
@@ -56,9 +70,7 @@ class RecommendedNftDetail extends StatelessWidget {
               child: Column(
             children: [
               Container(
-                child: ExpandableTextWidget(
-                    text:
-                        "Plenty of apes came before. But most were mere chimpanzees without any real form or function in the Metaverse. The Primus Ethereum Mammal, also known as the Prime Ape, is different. Plenty of apes came before. But most were mere chimpanzees without any real form or function in the Metaverse. The Primus Ethereum Mammal, also known as the Prime Ape, is different. Plenty of apes came before. But most were mere chimpanzees without any real form or function in the Metaverse. The Primus Ethereum Mammal, also known as the Prime Ape, is different. Plenty of apes came before. But most were mere chimpanzees without any real form or function in the Metaverse. The Primus Ethereum Mammal, also known as the Prime Ape, is different. Plenty of apes came before. But most were mere chimpanzees without any real form or function in the Metaverse. The Primus Ethereum Mammal, also known as the Prime Ape, is different. Plenty of apes came before. But most were mere chimpanzees without any real form or function in the Metaverse. The Primus Ethereum Mammal, also known as the Prime Ape, is different. Plenty of apes came before. But most were mere chimpanzees without any real form or function in the Metaverse. The Primus Ethereum Mammal, also known as the Prime Ape, is different. Plenty of apes came before. But most were mere chimpanzees without any real form or function in the Metaverse. The Primus Ethereum Mammal, also known as the Prime Ape, is different. Plenty of apes came before. But most were mere chimpanzees without any real form or function in the Metaverse. The Primus Ethereum Mammal, also known as the Prime Ape, is different"),
+                child: ExpandableTextWidget(text: nft.description!),
                 margin: EdgeInsets.only(
                     left: Dimensions.width20, right: Dimensions.width20),
               )
@@ -132,7 +144,7 @@ class RecommendedNftDetail extends StatelessWidget {
                       left: Dimensions.width20,
                       right: Dimensions.width20),
                   child: BigText(
-                    text: "\$10 | Add to cart",
+                    text: "\$${nft.price!} X 0",
                     color: Colors.white,
                   ),
                   decoration: BoxDecoration(
