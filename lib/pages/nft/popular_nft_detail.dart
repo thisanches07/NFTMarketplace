@@ -20,6 +20,7 @@ class PopularNftDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var nft = Get.find<PopularNftController>().popularNftList[pageId];
+    Get.find<PopularNftController>().initNft();
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -87,7 +88,8 @@ class PopularNftDetail extends StatelessWidget {
 
         ],
       ),
-      bottomNavigationBar: Container(
+      bottomNavigationBar: GetBuilder<PopularNftController>(builder: (popularNft){
+        return Container(
           height: Dimensions.bottomHeightBar,
           padding: EdgeInsets.only(top: Dimensions.height20,
               bottom: Dimensions.height20,
@@ -96,8 +98,8 @@ class PopularNftDetail extends StatelessWidget {
           decoration: BoxDecoration(
               color: AppColors.signColor,
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(Dimensions.radius20 * 2),
-                topRight: Radius.circular(Dimensions.radius20 * 2)
+                  topLeft: Radius.circular(Dimensions.radius20 * 2),
+                  topRight: Radius.circular(Dimensions.radius20 * 2)
               )
           ),
           child: Row(
@@ -107,15 +109,25 @@ class PopularNftDetail extends StatelessWidget {
                 padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height20,left: Dimensions.width20,right: Dimensions.width20),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(Dimensions.radius20),
-                  color: Colors.white
+                    color: Colors.white
                 ),
                 child: Row(
                   children: [
-                    Icon(Icons.remove,color: AppColors.signColor,),
+                    GestureDetector(
+                        onTap: (){
+
+                          popularNft.setQuantity(false);
+                        },
+                        child: Icon(Icons.remove,color: AppColors.signColor,)),
                     SizedBox(width: Dimensions.width10/2,),
-                    BigText(text: "0"),
+                    BigText(text: popularNft.quantity.toString()),
                     SizedBox(width: Dimensions.width10/2,),
-                    Icon(Icons.add,color: AppColors.signColor,),
+                    GestureDetector(
+                        onTap: (){
+
+                          popularNft.setQuantity(true);
+                        },
+                        child: Icon(Icons.add,color: AppColors.signColor,)),
                   ],
                 ),
               ),
@@ -123,13 +135,14 @@ class PopularNftDetail extends StatelessWidget {
                 padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height20,left: Dimensions.width20,right: Dimensions.width20),
                 child: BigText(text: "\$${nft.price!} | Add", color: Colors.white,),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Dimensions.radius20),
-                  color: AppColors.mainColor
+                    borderRadius: BorderRadius.circular(Dimensions.radius20),
+                    color: AppColors.mainColor
                 ),
               )
             ],
           ),
-      ),
+        );
+      }),
     );
   }
 }
