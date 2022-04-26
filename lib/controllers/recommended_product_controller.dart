@@ -16,13 +16,11 @@ class RecommendedNftController extends GetxController{
   Future<void> getRecommendedNftList() async{
     Response response = await recommendedNftRepo.getRecommendedNftList();
     if(response.statusCode == 200){
-      print("got nfts");
       _recommendedNftList=[];
       _recommendedNftList.addAll(Nft.fromJson(response.body).nfts);
       _isLoaded=true;
       update();
     }else{
-      print("nothing");
     }
   }
 }
