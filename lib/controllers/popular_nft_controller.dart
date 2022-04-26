@@ -6,66 +6,96 @@ import 'package:nftmarketplace/utils/colors.dart';
 
 import '../models/nfts_model.dart';
 
-class PopularNftController extends GetxController{
+class PopularNftController extends GetxController {
   final PopularNftRepo popularNftRepo;
+
   PopularNftController({required this.popularNftRepo});
-  List<dynamic> _popularNftList=[];
+
+  List<dynamic> _popularNftList = [];
+
   List<dynamic> get popularNftList => _popularNftList;
   late CartController _cart;
 
   bool _isLoaded = false;
+
   bool get isLoaded => _isLoaded;
 
-  int _quantity=0;
-  int get quantity=> _quantity;
-  int _inCartItems=0;
-  int get inCartItems=>_inCartItems+_quantity;
+  int _quantity = 0;
 
-  Future<void> getPopularNftList() async{
+  int get quantity => _quantity;
+  int _inCartItems = 0;
+
+  int get inCartItems => _inCartItems + _quantity;
+
+  Future<void> getPopularNftList() async {
     Response response = await popularNftRepo.getPopularNftList();
-    if(response.statusCode == 200){
-      _popularNftList=[];
+    if (response.statusCode == 200) {
+      _popularNftList = [];
       _popularNftList.addAll(Nft.fromJson(response.body).nfts);
-      _isLoaded=true;
+      _isLoaded = true;
       update();
-    }else{
-    }
+    } else {}
   }
 
-  void setQuantity(bool isIncrement){
-    if(isIncrement){
-      _quantity=checkQuantity(_quantity+1);
-    }else{
-      _quantity=checkQuantity(_quantity-1);
+  void setQuantity(bool isIncrement) {
+    if (isIncrement) {
+      _quantity = checkQuantity(_quantity + 1);
+    } else {
+      _quantity = checkQuantity(_quantity - 1);
     }
     update();
   }
-  int checkQuantity(int quantity){
-    if(quantity<0){
-      Get.snackbar("Item count", "You can't reduce more!",
+
+  int checkQuantity(int quantity) {
+    if ((_inCartItems + quantity) < 0) {
+      Get.snackbar(
+        "Item count",
+        "You can't reduce more!",
         backgroundColor: AppColors.mainColor,
         colorText: Colors.white,
       );
       return 0;
-    }else if(quantity>20){
-      Get.snackbar("Item count", "You can't add more!",
+    } else if ((_inCartItems + quantity) > 20) {
+      Get.snackbar(
+        "Item count",
+        "You can't add more!",
         backgroundColor: AppColors.mainColor,
         colorText: Colors.white,
       );
       return 20;
-    }else{
+    } else {
       return quantity;
     }
   }
 
-  void initNft(CartController cart){
-    _quantity=0;
-    _inCartItems=0;
-    _cart=cart;
+  void initNft(NftModel nft, CartController cart) {
+    _quantity = 0;
+    _inCartItems = 0;
+    _cart = cart;
+    var exist = false;
+    exist = _cart.existInCart(nft);
     //get from storage _inCartItems
+    print("exist or not " + exist.toString());
+    if (exist) {
+      _inCartItems = _cart.getQuantity(nft);
+    }
+    print("quantity in cart = " + _inCartItems.toString());
   }
 
-  void addItem(NftModel nft){
+  void addItem(NftModel nft) {
     _cart.addItem(nft, _quantity);
+    _quantity = 0;
+    _inCartItems = _cart.getQuantity(nft);
+    _cart.items.forEach((key, value) {
+      print(" The id is " +
+          value.id.toString() +
+          " The quantity is " +
+          value.quantity.toString());
+    });
+    update();
+  }
+
+  int get totalItems {
+    return _cart.totalItems;
   }
 }

@@ -21,7 +21,7 @@ class PopularNftDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var nft = Get.find<PopularNftController>().popularNftList[pageId];
-    Get.find<PopularNftController>().initNft(Get.find<CartController>());
+    Get.find<PopularNftController>().initNft(nft,Get.find<CartController>());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -51,8 +51,28 @@ class PopularNftDetail extends StatelessWidget {
                     Get.to(()=>MainNFTPage());
           },
                     child:
-                    AppIcon(icon: Icons.arrow_back_ios)),
-                AppIcon(icon: Icons.shopping_cart_outlined)
+                    AppIcon(icon: Icons.arrow_back_ios)
+                ),
+                GetBuilder<PopularNftController>(builder:(controller){
+                  return Stack(
+                    children: [
+                      AppIcon(icon: Icons.shopping_cart_outlined),
+                      Get.find<PopularNftController>().totalItems>=1?
+                      Positioned(
+                        right:0,top:0,
+                          child:AppIcon(icon: Icons.circle,size:20,
+                        iconColor: Colors.transparent,backgroundColor: AppColors.mainColor,)):
+                      Container(),
+                      Get.find<PopularNftController>().totalItems>=1?
+                      Positioned(
+                          right:5,top:1,
+                          child:BigText(text:Get.find<PopularNftController>().totalItems.toString(),
+                          size: 12, color: Colors.white,
+                          ),):
+                      Container(),
+                    ],
+                  );
+                })
               ],
             ),
           ),
@@ -121,7 +141,7 @@ class PopularNftDetail extends StatelessWidget {
                         },
                         child: Icon(Icons.remove,color: AppColors.signColor,)),
                     SizedBox(width: Dimensions.width10/2,),
-                    BigText(text: popularNft.quantity.toString()),
+                    BigText(text: popularNft.inCartItems.toString()),
                     SizedBox(width: Dimensions.width10/2,),
                     GestureDetector(
                         onTap: (){
