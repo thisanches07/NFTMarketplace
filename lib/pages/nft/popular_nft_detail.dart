@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:nftmarketplace/controllers/cart_controller.dart';
 import 'package:nftmarketplace/controllers/popular_nft_controller.dart';
 import 'package:nftmarketplace/pages/home/main_nft_page.dart';
 import 'package:nftmarketplace/widgets/app_column.dart';
@@ -20,7 +21,7 @@ class PopularNftDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var nft = Get.find<PopularNftController>().popularNftList[pageId];
-    Get.find<PopularNftController>().initNft();
+    Get.find<PopularNftController>().initNft(Get.find<CartController>());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -133,7 +134,12 @@ class PopularNftDetail extends StatelessWidget {
               ),
               Container(
                 padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height20,left: Dimensions.width20,right: Dimensions.width20),
-                child: BigText(text: "\$${nft.price!} | Add", color: Colors.white,),
+                child: GestureDetector(
+                    onTap: (){
+                      print(nft.stars);
+                      popularNft.addItem(nft);
+                    },
+                    child: BigText(text: "\$${nft.price!} | Add", color: Colors.white,)),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(Dimensions.radius20),
                     color: AppColors.mainColor
