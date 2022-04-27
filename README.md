@@ -2,6 +2,10 @@
 
 Um aplicativo de compra e venda de NFTs.
 
+## Link para aplicação backend
+
+https://github.com/thisanches07/NFTMarketplaceApi
+
 ## Integrantes
 
 Feito por:
