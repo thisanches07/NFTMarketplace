@@ -1,6 +1,6 @@
 # NFTmarketplace
 
-Um aplicativo de compra e venda de NFTs.
+Um aplicativo de compra de NFTs.
 
 ## Link para aplicação backend
 
