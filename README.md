@@ -2,7 +2,7 @@
 
 Um aplicativo de compra de NFTs.
 
-## Link para aplicação backend
+## Link para o repositório da aplicação backend
 
 https://github.com/thisanches07/NFTMarketplaceApi
 
