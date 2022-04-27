@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:nftmarketplace/controllers/popular_nft_controller.dart';
 import 'package:nftmarketplace/pages/home/main_nft_page.dart';
 import 'package:nftmarketplace/routes/route_helper.dart';
-import 'controllers/recommended_product_controller.dart';
+import 'controllers/recommended_nft_controller.dart';
 import 'helper/dependencies.dart' as dep;
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();

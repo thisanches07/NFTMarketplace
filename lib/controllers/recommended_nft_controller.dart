@@ -1,8 +1,7 @@
 import 'package:get/get.dart';
-import 'package:nftmarketplace/data/repository/popular_nft_repo.dart';
 
 import '../../models/nfts_model.dart';
-import '../data/repository/recommended_product_repo.dart';
+import '../data/repository/recommended_nft_repo.dart';
 
 
 class RecommendedNftController extends GetxController{

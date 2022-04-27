@@ -10,7 +10,7 @@ import 'package:nftmarketplace/widgets/big_text.dart';
 import 'package:nftmarketplace/widgets/icon_and_text_widget.dart';
 import 'package:nftmarketplace/widgets/small_text.dart';
 
-import '../../controllers/recommended_product_controller.dart';
+import '../../controllers/recommended_nft_controller.dart';
 import '../../utils/dimensions.dart';
 import 'package:get/get.dart';
 
