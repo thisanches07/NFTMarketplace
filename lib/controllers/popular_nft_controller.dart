@@ -4,6 +4,7 @@ import 'package:nftmarketplace/controllers/cart_controller.dart';
 import 'package:nftmarketplace/data/repository/popular_nft_repo.dart';
 import 'package:nftmarketplace/utils/colors.dart';
 
+import '../models/cart_model.dart';
 import '../models/nfts_model.dart';
 
 class PopularNftController extends GetxController {
@@ -54,6 +55,10 @@ class PopularNftController extends GetxController {
         backgroundColor: AppColors.mainColor,
         colorText: Colors.white,
       );
+      if(_inCartItems>0){
+        _quantity= - _inCartItems;
+        return _quantity;
+      }
       return 0;
     } else if ((_inCartItems + quantity) > 20) {
       Get.snackbar(
@@ -75,11 +80,9 @@ class PopularNftController extends GetxController {
     var exist = false;
     exist = _cart.existInCart(nft);
     //get from storage _inCartItems
-    print("exist or not " + exist.toString());
     if (exist) {
       _inCartItems = _cart.getQuantity(nft);
     }
-    print("quantity in cart = " + _inCartItems.toString());
   }
 
   void addItem(NftModel nft) {
@@ -87,15 +90,15 @@ class PopularNftController extends GetxController {
     _quantity = 0;
     _inCartItems = _cart.getQuantity(nft);
     _cart.items.forEach((key, value) {
-      print(" The id is " +
-          value.id.toString() +
-          " The quantity is " +
-          value.quantity.toString());
     });
     update();
   }
 
   int get totalItems {
     return _cart.totalItems;
+  }
+
+  List<CartModel> get getItems{
+    return _cart.getItems;
   }
 }

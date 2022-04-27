@@ -12,6 +12,7 @@ import '../../controllers/popular_nft_controller.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
+import '../cart/cart_page.dart';
 
 class RecommendedNftDetail extends StatelessWidget {
   final int pageId;
@@ -43,7 +44,11 @@ class RecommendedNftDetail extends StatelessWidget {
                   GetBuilder<PopularNftController>(builder:(controller){
                     return Stack(
                       children: [
-                        AppIcon(icon: Icons.shopping_cart_outlined),
+                        GestureDetector(
+                            onTap: () {
+                              Get.to(() => CartPage());
+                            },
+                            child: AppIcon(icon: Icons.shopping_cart_outlined)),
                         Get.find<PopularNftController>().totalItems>=1?
                         Positioned(
                             right:0,top:0,
