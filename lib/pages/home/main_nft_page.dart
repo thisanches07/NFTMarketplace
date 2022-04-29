@@ -20,8 +20,7 @@ class MainNFTPage extends StatefulWidget {
 class _MainNFTPageState extends State<MainNFTPage> {
   @override
   Widget build(BuildContext context) {
-    print("this current height is " + MediaQuery.of(context).size.height.toString());
-    
+    // print("this current height is " + MediaQuery.of(context).size.height.toString());
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: Column(
