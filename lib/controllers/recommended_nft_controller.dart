@@ -1,10 +1,9 @@
 import 'package:get/get.dart';
-
 import '../../models/nfts_model.dart';
 import '../data/repository/recommended_nft_repo.dart';
 
-
 class RecommendedNftController extends GetxController{
+  
   final RecommendedNftRepo recommendedNftRepo;
   RecommendedNftController({required this.recommendedNftRepo});
   List<dynamic> _recommendedNftList=[];

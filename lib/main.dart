@@ -5,6 +5,7 @@ import 'package:nftmarketplace/pages/home/main_nft_page.dart';
 import 'package:nftmarketplace/routes/route_helper.dart';
 import 'controllers/recommended_nft_controller.dart';
 import 'helper/dependencies.dart' as dep;
+
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await dep.init();
@@ -12,9 +13,7 @@ Future<void> main() async{
 }
 
 class MyApp extends StatelessWidget {
-
   const MyApp({Key? key}) : super(key: key);
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

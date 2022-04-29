@@ -5,7 +5,6 @@ import 'package:nftmarketplace/utils/app_constants.dart';
 class ApiClient extends GetConnect implements GetxService {
   late String token;
   final String appBaseUrl;
-
   late Map<String, String> _mainHeaders;
 
   ApiClient({required this.appBaseUrl}) {

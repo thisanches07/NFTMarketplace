@@ -10,12 +10,10 @@ import '../data/repository/recommended_nft_repo.dart';
 Future<void> init() async{
   //api client
   Get.lazyPut(()=> ApiClient(appBaseUrl: AppConstants.BASE_URL));
-
   //repository
   Get.lazyPut(() => PopularNftRepo(apiClient: Get.find()));
   Get.lazyPut(() => RecommendedNftRepo(apiClient: Get.find()));
   Get.lazyPut(() => CartRepo());
-
   //controller
   Get.lazyPut(() => PopularNftController(popularNftRepo: Get.find()));
   Get.lazyPut(() => RecommendedNftController(recommendedNftRepo: Get.find()));

@@ -10,11 +10,8 @@ import '../utils/colors.dart';
 
 class CartController extends GetxController {
   final CartRepo cartRepo;
-
   CartController({required this.cartRepo});
-
   Map<int, CartModel> _items = {};
-
   Map<int, CartModel> get items => _items;
 
   void addItem(NftModel nft, int quantity) {

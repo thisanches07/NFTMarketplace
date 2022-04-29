@@ -9,25 +9,16 @@ import '../models/nfts_model.dart';
 
 class PopularNftController extends GetxController {
   final PopularNftRepo popularNftRepo;
-
   PopularNftController({required this.popularNftRepo});
-
   List<dynamic> _popularNftList = [];
-
   List<dynamic> get popularNftList => _popularNftList;
   late CartController _cart;
-
   bool _isLoaded = false;
-
   bool get isLoaded => _isLoaded;
-
   int _quantity = 0;
-
   int get quantity => _quantity;
   int _inCartItems = 0;
-
   int get inCartItems => _inCartItems + _quantity;
-
   Future<void> getPopularNftList() async {
     Response response = await popularNftRepo.getPopularNftList();
     if (response.statusCode == 200) {

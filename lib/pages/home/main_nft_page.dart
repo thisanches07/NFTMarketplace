@@ -6,13 +6,8 @@ import 'package:nftmarketplace/widgets/small_text.dart';
 import '../../utils/dimensions.dart';
 import 'nft_page_body.dart';
 
-
-
-
-
 class MainNFTPage extends StatefulWidget {
   const MainNFTPage({Key? key}) : super(key: key);
-
   @override
   _MainNFTPageState createState() => _MainNFTPageState();
 }
@@ -39,7 +34,6 @@ class _MainNFTPageState extends State<MainNFTPage> {
                           children: [
                             SmallText(text: "Brazil", color: Colors.black54,),
                             Icon(Icons.arrow_drop_down_rounded)
-
                           ],
                         )
                       ],
