@@ -1,16 +1,8 @@
-# nftmarketplace
+# NFT Market Place
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+| Aluno | RA | Turma Mobile | Turma PA |
+| ----- | -- | ------------ | -------- |
+| Bruno Cesar de Moraes | 180344 | CP110TIN3 | PA038TIN3 |
+| Paulo Ricardo Horta Grando | 180173 | Nenhuma | - |
+| Thiago Sanches | 190006 | CP110TIN3 | PA038TIN3 |
+| Victor Rezende Vianini | 150540 | Nenhuma | PA038TIN3 |
