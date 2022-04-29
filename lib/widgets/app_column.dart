@@ -9,7 +9,8 @@ import 'icon_and_text_widget.dart';
 
 class AppColumn extends StatelessWidget {
   final String text;
-  const AppColumn({Key? key, required this.text}) : super(key: key);
+  final int stars;
+  const AppColumn({Key? key, required this.text, required this.stars}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class AppColumn extends StatelessWidget {
         Row(
           children: [
             Wrap(
-              children: List.generate(5, (index) {
+              children: List.generate(stars, (index) {
                 return Icon(
                   Icons.star,
                   color: AppColors.mainColor,
