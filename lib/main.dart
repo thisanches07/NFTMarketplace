@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nftmarketplace/controllers/popular_nft_controller.dart';
-import 'package:nftmarketplace/pages/home/main_nft_page.dart';
 import 'package:nftmarketplace/routes/route_helper.dart';
 import 'controllers/recommended_nft_controller.dart';
 import 'helper/dependencies.dart' as dep;
@@ -23,8 +22,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
 
-      home: MainNFTPage(),
-      initialRoute: RouteHelper.initial,
+      initialRoute: RouteHelper.getInitial(),
       getPages: RouteHelper.routes,
     );
   }
