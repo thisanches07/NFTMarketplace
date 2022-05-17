@@ -40,6 +40,7 @@ class _NftPageBodyState extends State<NftPageBody> {
   @override
   void dispose() {
     pageController.dispose();
+    super.dispose();
   }
 
   @override

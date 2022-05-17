@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:nftmarketplace/pages/cart/cart_page.dart';
-import 'package:nftmarketplace/pages/home/main_nft_page.dart';
 import 'package:nftmarketplace/pages/nft/popular_nft_detail.dart';
 
+import '../pages/home/home_page.dart';
 import '../pages/nft/recommended_nft_detail.dart';
 
 class RouteHelper {
@@ -17,7 +17,7 @@ class RouteHelper {
   static String getCartPage()=>'$cartPage';
 
   static List<GetPage> routes = [
-    GetPage(name: initial, page: () => MainNFTPage()),
+    GetPage(name: initial, page: () => HomePage()),
     GetPage(
         name: popularNft,
         page: () {
