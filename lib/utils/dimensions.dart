@@ -44,5 +44,8 @@ class Dimensions {
   static double popularNftImageSize = screenHeight / 2.41;
 
   //bottom height
-static double bottomHeightBar = screenHeight/6.5;
+  static double bottomHeightBar = screenHeight/6.5;
+
+  //splash screen dimensions
+  static double splashImg = screenHeight/3.38;
 }

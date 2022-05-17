@@ -16,15 +16,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Get.find<PopularNftController>().getPopularNftList();
-    Get.find<RecommendedNftController>().getRecommendedNftList();
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
 
-      initialRoute: RouteHelper.getInitial(),
-      getPages: RouteHelper.routes,
-    );
+    return GetBuilder<PopularNftController>(builder: (_){
+      return GetBuilder<RecommendedNftController>(builder: (_){
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          //home: SplashScreen(),
+          initialRoute: RouteHelper.getSplashPage(),
+          getPages: RouteHelper.routes,
+        );
+      });
+    });
   }
 }
 

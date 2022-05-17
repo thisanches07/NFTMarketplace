@@ -4,19 +4,23 @@ import 'package:nftmarketplace/pages/nft/popular_nft_detail.dart';
 
 import '../pages/home/home_page.dart';
 import '../pages/nft/recommended_nft_detail.dart';
+import '../pages/splash/splash_page.dart';
 
 class RouteHelper {
+  static const String splashPage = "/splash-page";
   static const String initial = "/";
   static const String popularNft = "/popular-fnt";
   static const String recommendedNft = "/recommended-fnt";
   static const String cartPage = '/cart-page';
 
+  static String getSplashPage()=>'$splashPage';
   static String getInitial()=>'$initial';
   static String getPopularNft(int pageId,String page) => '$popularNft?pageId=$pageId&page=$page';
   static String getRecommendedNft(int pageId,String page) => '$recommendedNft?pageId=$pageId&page=$page';
   static String getCartPage()=>'$cartPage';
 
   static List<GetPage> routes = [
+    GetPage(name: splashPage, page: ()=>SplashScreen()),
     GetPage(name: initial, page: () => HomePage()),
     GetPage(
         name: popularNft,
