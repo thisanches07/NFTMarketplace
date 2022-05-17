@@ -29,6 +29,7 @@ class CartController extends GetxController {
           quantity: value.quantity! + quantity,
           isExist: true,
           time: DateTime.now().toString(),
+          nft: nft,
         );
       });
 
@@ -46,6 +47,7 @@ class CartController extends GetxController {
             quantity: quantity,
             isExist: true,
             time: DateTime.now().toString(),
+            nft: nft,
           );
         });
       }else{
@@ -55,6 +57,7 @@ class CartController extends GetxController {
         );
       }
     }
+    update();
   }
 
   bool existInCart(NftModel nft) {

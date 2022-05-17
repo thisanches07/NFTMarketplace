@@ -2,21 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nftmarketplace/controllers/cart_controller.dart';
 import 'package:nftmarketplace/controllers/popular_nft_controller.dart';
-import 'package:nftmarketplace/pages/home/main_nft_page.dart';
 import 'package:nftmarketplace/widgets/app_column.dart';
 import 'package:nftmarketplace/widgets/app_icon.dart';
 import 'package:nftmarketplace/widgets/expandable_text_widget.dart';
 
+import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widgets/big_text.dart';
-import '../cart/cart_page.dart';
 
 
 class PopularNftDetail extends StatelessWidget {
   final int pageId;
-
-  const PopularNftDetail({Key? key, required this.pageId}) : super(key: key);
+  final String page;
+  const PopularNftDetail({Key? key, required this.pageId, required this.page}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,35 +49,41 @@ class PopularNftDetail extends StatelessWidget {
               children: [
                 GestureDetector(
                     onTap: () {
-                      Get.to(() => MainNFTPage());
+                      if(page == "cartpage"){
+                        Get.toNamed(RouteHelper.getCartPage());
+                      }else{
+                        Get.toNamed(RouteHelper.getInitial());
+                      }
                     },
                     child:
                     AppIcon(icon: Icons.arrow_back_ios)
                 ),
                 GetBuilder<PopularNftController>(builder: (controller) {
-                  return Stack(
-                      children: [
-                      GestureDetector(
-                          onTap: () {
-                            Get.to(() => CartPage());
-                          },
-                          child: AppIcon(icon: Icons.shopping_cart_outlined)),
-                  Get.find<PopularNftController>().totalItems>=1?
-                  Positioned(
-                  right:0,top:0,
-                  child: AppIcon(icon: Icons.circle,size:22,
-                  iconColor: Colors.transparent,backgroundColor: AppColors.mainColor,),
+                  return GestureDetector(
+                    onTap: (){
+                      if(controller.totalItems>=1)
+                      Get.toNamed(RouteHelper.getCartPage());
+                    },
+                    child: Stack(
+                        children: [
+                          AppIcon(icon: Icons.shopping_cart_outlined),
+                          controller.totalItems>=1?
+                    Positioned(
+                    right:0,top:0,
+                    child: AppIcon(icon: Icons.circle,size:22,
+                    iconColor: Colors.transparent,backgroundColor: AppColors.mainColor,),
 
-                  ):
-                  Container(),
-                  Get.find<PopularNftController>().totalItems>=1?
-                  Positioned(
-                  right:3,top:3,
-                  child:BigText(text:Get.find<PopularNftController>().totalItems.toString(),
-                  size: 12, color: Colors.white,
-                  ),):
-                  Container(),
-                  ],
+                    ):
+                    Container(),
+                    Get.find<PopularNftController>().totalItems>=1?
+                    Positioned(
+                    right:3,top:3,
+                    child:BigText(text:Get.find<PopularNftController>().totalItems.toString(),
+                    size: 12, color: Colors.white,
+                    ),):
+                    Container(),
+                    ],
+                    ),
                   );
                 })
               ],

@@ -1,3 +1,5 @@
+import 'package:nftmarketplace/models/nfts_model.dart';
+
 class CartModel {
   int? id;
   String? name;
@@ -6,6 +8,7 @@ class CartModel {
   int? quantity;
   bool? isExist;
   String? time;
+  NftModel? nft;
 
   CartModel(
       {this.id,
@@ -14,7 +17,8 @@ class CartModel {
         this.img,
         this.quantity,
         this.isExist,
-        this.time
+        this.time,
+        this.nft,
   });
 
   CartModel.fromJson(Map<String, dynamic> json) {
@@ -25,6 +29,7 @@ class CartModel {
     quantity = json['quantity'];
     isExist = json['isExist'];
     time = json['time'];
+    nft=NftModel.fromJson(json['nft']);
   }
 
 }

@@ -119,7 +119,7 @@ class _NftPageBodyState extends State<NftPageBody> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        Get.toNamed(RouteHelper.getRecommendedNft(index));
+                        Get.toNamed(RouteHelper.getRecommendedNft(index, "home"));
                       },
                       child: Container(
                         margin: EdgeInsets.only(
@@ -247,7 +247,7 @@ class _NftPageBodyState extends State<NftPageBody> {
           GestureDetector(
             onTap: () {
 
-              Get.toNamed(RouteHelper.getPopularNft(index));
+              Get.toNamed(RouteHelper.getPopularNft(index, "home"));
             },
             child: Container(
               height: Dimensions.pageViewContainer,
