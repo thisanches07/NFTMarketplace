@@ -6,4 +6,5 @@ class AppConstants{
   static const String POPULAR_NFT_URI = "/nfts/popular";
   static const String RECOMMENDED_NFT_URI = "/nfts/recommended";
   static const String TOKEN = "DBToken";
+  static const String CART_LIST="cart-list";
 }

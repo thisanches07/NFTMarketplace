@@ -3,9 +3,10 @@ class Nft {
   int? _typeId;
   int? _offset;
   late List<NftModel> _nfts;
+
   List<NftModel> get nfts => _nfts;
 
-  Nft({ required totalSize,  required typeId,  required offset, required nfts}){
+  Nft({required totalSize, required typeId, required offset, required nfts}) {
     this._totalSize = totalSize;
     this._typeId = typeId;
     this._offset = offset;
@@ -39,15 +40,15 @@ class NftModel {
 
   NftModel(
       {this.id,
-        this.name,
-        this.description,
-        this.price,
-        this.stars,
-        this.img,
-        this.location,
-        this.createdAt,
-        this.updatedAt,
-        this.typeId});
+      this.name,
+      this.description,
+      this.price,
+      this.stars,
+      this.img,
+      this.location,
+      this.createdAt,
+      this.updatedAt,
+      this.typeId});
 
   NftModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -62,4 +63,16 @@ class NftModel {
     typeId = json['type_id'];
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      "id": this.id,
+      "name": this.name,
+      "price": this.price,
+      "img": this.img,
+      "location": this.location,
+      "createdAt": this.createdAt,
+      "updatedAt": this.updatedAt,
+      "typeId": this.typeId,
+    };
+  }
 }
