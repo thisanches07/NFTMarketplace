@@ -238,6 +238,7 @@ class CartPage extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         //popularNft.addItem(nft);
+                        cartController.addToHistory();
                       },
                       child: Container(
                         padding: EdgeInsets.only(top: Dimensions.height20,
