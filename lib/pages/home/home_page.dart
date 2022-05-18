@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nftmarketplace/pages/cart/cart_history.dart';
 import 'package:nftmarketplace/pages/home/main_nft_page.dart';
 import 'package:nftmarketplace/utils/colors.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -19,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   List pages = [
     MainNFTPage(),
     Container(child: Center(child: Text("Next page"))),
-    Container(child: Center(child: Text("Next next page"))),
+    CartHistory(),
     Container(child: Center(child: Text("Next next next page")))
   ];
 
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> {
     return [
       MainNFTPage(),
       Container(child: Center(child: Text("Next page"))),
-      Container(child: Center(child: Text("Next next page"))),
+      CartHistory(),
       Container(child: Center(child: Text("Next next next page"))),
     ];
   }
