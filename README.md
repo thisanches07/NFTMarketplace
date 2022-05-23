@@ -47,7 +47,7 @@ Para instalar o projeto é preciso possuir em sua máquina o flutter devidamente
 É preciso possuir uma IDE devidamente configurada com pacotes e outras extensões que permitam rodar um projeto flutter. No caso do grupo foi utilizado o intelliJ. Para emular o projeto, é necessário possuir um emulador configurado ou um smartphone android para que seja possível emular o projeto através dele.
 
 ### 3º passo
-Com a IDE e o emulador configurado corretamente, basta clonar o repositório e codar o projeto normalmente.
+Com a IDE e o emulador configurado corretamente, basta clonar o repositório e rodar o projeto normalmente.
 
 ## Telas já desenvolvidas
 
