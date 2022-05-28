@@ -52,11 +52,11 @@ class PopularNftDetail extends StatelessWidget {
                       if(page == "cartpage"){
                         Get.toNamed(RouteHelper.getCartPage());
                       }else{
-                        Get.toNamed(RouteHelper.getInitial());
+                        Get.back();
                       }
                     },
                     child:
-                    AppIcon(icon: Icons.arrow_back_ios)
+                    AppIcon(icon: Icons.clear)
                 ),
                 GetBuilder<PopularNftController>(builder: (controller) {
                   return GestureDetector(

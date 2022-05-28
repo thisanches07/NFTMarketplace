@@ -38,7 +38,7 @@ class RecommendedNftDetail extends StatelessWidget {
                       if(page == "cartpage"){
                         Get.toNamed(RouteHelper.getCartPage());
                       }else{
-                        Get.toNamed(RouteHelper.getInitial());
+                        Get.back();
                       }
                     },
                     child: AppIcon(icon: Icons.clear),
@@ -192,7 +192,7 @@ class RecommendedNftDetail extends StatelessWidget {
                             left: Dimensions.width20,
                             right: Dimensions.width20),
                         child: BigText(
-                          text: "\$${nft.price!} X 0",
+                          text: "\$${nft.price!} X ${controller.inCartItems}",
                           color: Colors.white,
                         ),
                         decoration: BoxDecoration(

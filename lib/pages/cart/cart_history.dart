@@ -58,6 +58,9 @@ class CartHistory extends StatelessWidget {
                 text: "Orders",
                 color: Colors.white,
               ),
+              SizedBox(
+                width: Dimensions.width20 * 5,
+              ),
               AppIcon(
                 icon: Icons.shopping_cart,
                 iconColor: Colors.white,
