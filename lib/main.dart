@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nftmarketplace/controllers/cart_controller.dart';
 import 'package:nftmarketplace/controllers/popular_nft_controller.dart';
+import 'package:nftmarketplace/pages/auth/sign_in_page.dart';
+import 'package:nftmarketplace/pages/auth/sign_up_page.dart';
+import 'package:nftmarketplace/pages/splash/splash_page.dart';
 import 'package:nftmarketplace/routes/route_helper.dart';
 import 'controllers/recommended_nft_controller.dart';
 import 'helper/dependencies.dart' as dep;
@@ -23,7 +26,8 @@ Get.find<CartController>().getCartData();
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
-          //home: SplashScreen(),
+          // home: SignUpPage(),
+          home: SignInPage(),
           initialRoute: RouteHelper.getSplashPage(),
           getPages: RouteHelper.routes,
         );

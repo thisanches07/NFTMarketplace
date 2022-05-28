@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nftmarketplace/pages/account/account_page.dart';
+import 'package:nftmarketplace/pages/auth/sign_up_page.dart';
 import 'package:nftmarketplace/pages/cart/cart_history.dart';
 import 'package:nftmarketplace/pages/home/main_nft_page.dart';
 import 'package:nftmarketplace/utils/colors.dart';
@@ -20,7 +21,7 @@ class _HomePageState extends State<HomePage> {
 
   List pages = [
     MainNFTPage(),
-    Container(child: Center(child: Text("Next page"))),
+    SignUpPage(),
     CartHistory(),
     AccountPage(),
   ];
