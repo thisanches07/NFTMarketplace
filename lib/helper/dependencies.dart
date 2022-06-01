@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
+import 'package:nftmarketplace/controllers/auth_controller.dart';
 import 'package:nftmarketplace/controllers/cart_controller.dart';
+import 'package:nftmarketplace/data/repository/auth_repo.dart';
 import 'package:nftmarketplace/data/repository/cart_repo.dart';
 import 'package:nftmarketplace/utils/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,12 +15,14 @@ Future<void> init() async{
 
   Get.lazyPut(() => sharedPreferences);
   //api client
-  Get.lazyPut(()=> ApiClient(appBaseUrl: AppConstants.BASE_URL));
+  Get.lazyPut(() => ApiClient(appBaseUrl: AppConstants.BASE_URL));
+  Get.lazyPut(() => AuthRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
   //repository
   Get.lazyPut(() => PopularNftRepo(apiClient: Get.find()));
   Get.lazyPut(() => RecommendedNftRepo(apiClient: Get.find()));
   Get.lazyPut(() => CartRepo(sharedPreferences:Get.find()));
   //controller
+  Get.lazyPut(() => AuthController(authRepo: Get.find()));
   Get.lazyPut(() => PopularNftController(popularNftRepo: Get.find()));
   Get.lazyPut(() => RecommendedNftController(recommendedNftRepo: Get.find()));
   Get.lazyPut(() => CartController(cartRepo: Get.find()));

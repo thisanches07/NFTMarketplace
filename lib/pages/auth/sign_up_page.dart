@@ -3,6 +3,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nftmarketplace/base/show_custom_message.dart';
+import 'package:nftmarketplace/controllers/auth_controller.dart';
+import 'package:nftmarketplace/models/signup_body_model.dart';
 import 'package:nftmarketplace/utils/colors.dart';
 import 'package:nftmarketplace/utils/dimensions.dart';
 import 'package:nftmarketplace/widgets/app_text_field.dart';
@@ -19,23 +21,39 @@ class SignUpPage extends StatelessWidget {
     var phoneController = TextEditingController();
 
     void _registration(){
+      var authController = Get.find<AuthController>();
       String name = nameController.text.trim();
       String email = emailController.text.trim();
       String password = passwordController.text.trim();
       String phone = phoneController.text.trim();
     
       if(email.isEmpty){
-        showCustomSnackBar("The email cannot be empty");
+        showCustomSnackBar("The email cannot be empty", title: "Email");
       } else if (!GetUtils.isEmail(email)) {
-        showCustomSnackBar("This value is not a valid email");
+        showCustomSnackBar("This value is not a valid email", title: "Email");
       } else if (password.isEmpty){
-        showCustomSnackBar("The password cannot be empty");
+        showCustomSnackBar("The password cannot be empty", title: "Password");
       } else if (password.length < 6){
-        showCustomSnackBar("The password must be more than 6 digits");
+        showCustomSnackBar("The password must be more than 6 digits", title: "Password");
       } else if (name.isEmpty){
-        showCustomSnackBar("The name cannot be empty");
+        showCustomSnackBar("The name cannot be empty", title: "Name");
       } else if (phone.isEmpty){
-        showCustomSnackBar("The phone cannot be empty");
+        showCustomSnackBar("The phone cannot be empty", title: "Phone number");
+      } else {
+        showCustomSnackBar("All went well", title: "Perfect");
+        SignUpBody signUpBody = SignUpBody(
+          name: name,
+          phone: phone,
+          email: email,
+          password: password
+        );
+        authController.registration(signUpBody).then((status){
+          if(status.isSuccess){
+            print("Success registration");
+          } else {
+            showCustomSnackBar(status.message);
+          }
+        });
       }
       
       nameController.clear();
