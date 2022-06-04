@@ -26,8 +26,7 @@ Get.find<CartController>().getCartData();
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
-          // home: SignUpPage(),
-          home: SignInPage(),
+          // home: SignInPage(),
           initialRoute: RouteHelper.getSplashPage(),
           getPages: RouteHelper.routes,
         );

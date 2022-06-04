@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nftmarketplace/base/no_data_page.dart';
+import 'package:nftmarketplace/controllers/auth_controller.dart';
 import 'package:nftmarketplace/utils/colors.dart';
 import 'package:nftmarketplace/widgets/app_icon.dart';
 import 'package:nftmarketplace/widgets/big_text.dart';
@@ -254,8 +255,12 @@ class CartPage extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        //popularNft.addItem(nft);
-                        cartController.addToHistory();
+                        if(Get.find<AuthController>().userLoggedIn()){
+                          //popularNft.addItem(nft);
+                          cartController.addToHistory();
+                        } else {
+                          Get.toNamed(RouteHelper.getSignInPage());
+                        }
                       },
                       child: Container(
                         padding: EdgeInsets.only(top: Dimensions.height20,
