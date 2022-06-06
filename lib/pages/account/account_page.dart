@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:nftmarketplace/controllers/auth_controller.dart';
+import 'package:nftmarketplace/controllers/cart_controller.dart';
+import 'package:nftmarketplace/routes/route_helper.dart';
 import 'package:nftmarketplace/utils/colors.dart';
 import 'package:nftmarketplace/utils/dimensions.dart';
 import 'package:nftmarketplace/widgets/account_widget.dart';
@@ -72,15 +76,27 @@ class AccountPage extends StatelessWidget {
                     ),
                     SizedBox(height: Dimensions.height20),
                     // Logout
-                    AccountWidget(
-                      appIcon: AppIcon(
-                        icon: Icons.logout,
-                        backgroundColor: Colors.red,
-                        iconSize: Dimensions.height10*5/2,
-                        iconColor: Colors.white,
-                        size: Dimensions.height10 * 5,
-                      ), 
-                      bigText: BigText(text: "Logout", )
+                    GestureDetector(
+                      onTap: (){
+                        if(Get.find<AuthController>().userLoggedIn()){
+                          Get.find<AuthController>().clearSharedData();
+                          Get.find<CartController>().clear();
+                          Get.find<CartController>().clearCartHistory();
+                          Get.offNamed(RouteHelper.getSignInPage());
+                        } else {
+                          print("You logged out!");
+                        }
+                      },
+                      child: AccountWidget(
+                        appIcon: AppIcon(
+                          icon: Icons.logout,
+                          backgroundColor: Colors.red,
+                          iconSize: Dimensions.height10*5/2,
+                          iconColor: Colors.white,
+                          size: Dimensions.height10 * 5,
+                        ), 
+                        bigText: BigText(text: "Logout", )
+                      ),
                     ),
                     SizedBox(height: Dimensions.height20),
                   ],
