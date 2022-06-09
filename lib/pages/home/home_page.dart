@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
 
   List pages = [
     MainNFTPage(),
-    Container(child: Text("History page")),
+    Container(child: Center(child: Text("History page"))),
     CartHistory(),
     AccountPage(),
   ];

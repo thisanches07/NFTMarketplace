@@ -1,17 +1,14 @@
 class UserModel {
-
   int id;
   String name;
   String username;
   String phone;
-  int orderCount;
 
   UserModel({
     required this.id,
     required this.name,
     required this.username,
-    required this.phone,
-    required this.orderCount
+    required this.phone
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json){
@@ -19,8 +16,16 @@ class UserModel {
       id: json['id'],
       name: json['name'],
       username: json['username'],
-      phone: json['phone'],
-      orderCount: json['orderCount']
+      phone: json['phone']
     );
+  }
+
+  Map<String, dynamic> toJson(){
+    return {
+      "id": this.id,
+      "name": this.name,
+      "username": this.username,
+      "phone": this.phone
+    };
   }
 }

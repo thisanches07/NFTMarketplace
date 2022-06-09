@@ -1,18 +1,29 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-
+import 'package:nftmarketplace/models/order_model.dart';
+import 'package:nftmarketplace/models/response_model.dart';
 import '../data/repository/cart_repo.dart';
 import '../models/cart_model.dart';
 import '../models/nfts_model.dart';
 import '../utils/colors.dart';
 
 class CartController extends GetxController {
+  
   final CartRepo cartRepo;
+
   CartController({required this.cartRepo});
   Map<int, CartModel> _items = {};
   Map<int, CartModel> get items => _items;
+
+  bool _isLoading = false;
+  List<OrderModel>? _orderList;
+
+  bool get isLoading => _isLoading;
+  List<OrderModel>? get orderList => _orderList;
 
   //Only for storage and sharedpreferences
   List<CartModel> storageItems=[];
@@ -147,6 +158,24 @@ class CartController extends GetxController {
   void clearCartHistory(){
     cartRepo.clearCartHistory();
     update();
+  }
+
+  Future<ResponseModel> getOrdersList() async {
+    _isLoading = true;
+    update();
+    Response response = await cartRepo.getOrdersList();
+    late  ResponseModel responseModel;
+    if (response.statusCode == 200) {
+      late List list = response.body;
+      _orderList = list.map((e) => OrderModel.fromJson(e)).toList();
+      responseModel = ResponseModel(true, "successfully");
+    } else {
+      _orderList = [];
+      responseModel = ResponseModel(false, response.body["message"]!);
+    }
+    _isLoading = false;
+    update();
+    return responseModel;
   }
 
 }

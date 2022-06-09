@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:nftmarketplace/controllers/user_controller.dart';
 import 'package:nftmarketplace/utils/dimensions.dart';
 
 import '../../controllers/popular_nft_controller.dart';
@@ -25,6 +26,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   Future<void> _loadResource() async{
     await Get.find<PopularNftController>().getPopularNftList();
     await Get.find<RecommendedNftController>().getRecommendedNftList();
+    await Get.find<UserController>().getUserInfo();
   }
 
   @override

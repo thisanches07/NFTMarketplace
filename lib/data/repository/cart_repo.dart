@@ -1,16 +1,20 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
+import 'package:nftmarketplace/data/api/api_client.dart';
 import 'package:nftmarketplace/utils/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/cart_model.dart';
 
 class CartRepo{
+  final ApiClient apiClient;
   final SharedPreferences sharedPreferences;
-  CartRepo({required this.sharedPreferences});
+  CartRepo({required this.apiClient, required this.sharedPreferences});
 
   List<String> cart = [];
   List<String> cartHistory = [];
+
   void addToCartList(List<CartModel> cartList){
     // sharedPreferences.remove(AppConstants.CART_LIST);
     // sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
@@ -21,7 +25,6 @@ class CartRepo{
       element.time = time;
       return cart.add(jsonEncode(element));
     });
-
     sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
     // getCartList();
   }
@@ -69,5 +72,9 @@ class CartRepo{
     removeCart();
     cartHistory=[];
     sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
+  }
+
+  Future<Response> getOrdersList() async {
+    return await apiClient.getData(AppConstants.ORDER_URI);
   }
 }

@@ -9,6 +9,6 @@ class UserRepo {
   });
 
   Future<Response> getUserInfo() async {
-    return await apiClient.getData(AppConstants.USERS_URI);
+    return await apiClient.getData(AppConstants.USER_INFO_URI);
   }
 }

@@ -21,15 +21,17 @@ class CartModel {
         this.nft,
   });
 
-  CartModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    price = json['price'];
-    img = json['img'];
-    quantity = json['quantity'];
-    isExist = json['isExist'];
-    time = json['time'];
-    nft=NftModel.fromJson(json['nft']);
+  factory CartModel.fromJson(Map<String, dynamic> json){
+    return CartModel(
+      id: json['id'],
+      name: json['name'],
+      price: json['price'],
+      img: json['img'],
+      quantity: json['quantity'],
+      isExist: json['isExist'],
+      time: json['time'],
+      nft: NftModel.fromJson(json['nft'])
+    );
   }
 
   Map<String, dynamic> toJson(){
