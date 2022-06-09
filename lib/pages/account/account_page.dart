@@ -1,20 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nftmarketplace/base/custom_loader.dart';
 import 'package:nftmarketplace/controllers/auth_controller.dart';
 import 'package:nftmarketplace/controllers/cart_controller.dart';
 import 'package:nftmarketplace/controllers/user_controller.dart';
-import 'package:nftmarketplace/models/response_model.dart';
-import 'package:nftmarketplace/models/user_model.dart';
 import 'package:nftmarketplace/routes/route_helper.dart';
-import 'package:nftmarketplace/utils/app_constants.dart';
 import 'package:nftmarketplace/utils/colors.dart';
 import 'package:nftmarketplace/utils/dimensions.dart';
 import 'package:nftmarketplace/widgets/account_widget.dart';
 import 'package:nftmarketplace/widgets/app_icon.dart';
 import 'package:nftmarketplace/widgets/big_text.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -134,7 +129,7 @@ class _AccountPage extends State<AccountPage> {
               ],
             ),
           ):
-          CustomLoader()
+          const CustomLoader()
         ):
         Container(
           width: double.maxFinite,
@@ -143,7 +138,7 @@ class _AccountPage extends State<AccountPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 80,
                   backgroundImage: AssetImage(

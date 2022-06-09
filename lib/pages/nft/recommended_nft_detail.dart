@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:nftmarketplace/controllers/recommended_nft_controller.dart';
 import 'package:nftmarketplace/widgets/app_icon.dart';
 import 'package:nftmarketplace/widgets/big_text.dart';
@@ -41,7 +39,7 @@ class RecommendedNftDetail extends StatelessWidget {
                         Get.back();
                       }
                     },
-                    child: AppIcon(icon: Icons.clear),
+                    child: const AppIcon(icon: Icons.clear),
                   ),
                   // AppIcon(icon: Icons.shopping_cart_outlined)
                   GetBuilder<PopularNftController>(builder:(controller){
@@ -52,9 +50,9 @@ class RecommendedNftDetail extends StatelessWidget {
                         },
                       child: Stack(
                         children: [
-                          AppIcon(icon: Icons.shopping_cart_outlined),
+                          const AppIcon(icon: Icons.shopping_cart_outlined),
                           Get.find<PopularNftController>().totalItems>=1?
-                          Positioned(
+                          const Positioned(
                               right:0,top:0,
                               child:AppIcon(icon: Icons.circle,size:20,
                                 iconColor: Colors.transparent,backgroundColor: AppColors.mainColor,)):
@@ -73,12 +71,12 @@ class RecommendedNftDetail extends StatelessWidget {
                 ],
               ),
               bottom: PreferredSize(
-                preferredSize: Size.fromHeight(20),
+                preferredSize: const Size.fromHeight(20),
                 child: Container(
                   child: Center(
                       child: BigText(size: Dimensions.font26, text: nft.name!)),
                   width: double.maxFinite,
-                  padding: EdgeInsets.only(top: 5, bottom: 10),
+                  padding: const EdgeInsets.only(top: 5, bottom: 10),
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
@@ -177,7 +175,7 @@ class RecommendedNftDetail extends StatelessWidget {
                             borderRadius:
                                 BorderRadius.circular(Dimensions.radius20),
                             color: Colors.white),
-                        child: Icon(
+                        child: const Icon(
                           Icons.favorite,
                           color: AppColors.mainColor,
                         )),

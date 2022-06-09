@@ -33,7 +33,7 @@ class _MainNFTPageState extends State<MainNFTPage> {
                         Row(
                           children: [
                             SmallText(text: "Brazil", color: Colors.black54,),
-                            Icon(Icons.arrow_drop_down_rounded)
+                            const Icon(Icons.arrow_drop_down_rounded)
                           ],
                         )
                       ],
@@ -53,7 +53,7 @@ class _MainNFTPageState extends State<MainNFTPage> {
               )
           ),
           //showing the body
-          Expanded(child: SingleChildScrollView(
+          const Expanded(child: SingleChildScrollView(
             child: NftPageBody(),
           )),
         ],

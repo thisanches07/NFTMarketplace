@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nftmarketplace/pages/account/account_page.dart';
-import 'package:nftmarketplace/pages/auth/sign_in_page.dart';
 import 'package:nftmarketplace/pages/cart/cart_history.dart';
+import 'package:nftmarketplace/pages/cart/cart_page.dart';
 import 'package:nftmarketplace/pages/home/main_nft_page.dart';
 import 'package:nftmarketplace/utils/colors.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -20,10 +20,10 @@ class _HomePageState extends State<HomePage> {
 
 
   List pages = [
-    MainNFTPage(),
-    Container(child: Center(child: Text("History page"))),
-    CartHistory(),
-    AccountPage(),
+    const MainNFTPage(),
+    const CartHistory(),
+    const CartPage(),
+    const AccountPage(),
   ];
 
   void onTapNav(int index){
@@ -44,25 +44,25 @@ class _HomePageState extends State<HomePage> {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.home),
+        icon: const Icon(CupertinoIcons.home),
         title: ("Home"),
         activeColorPrimary: AppColors.mainColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.archivebox_fill),
+        icon: const Icon(CupertinoIcons.archivebox_fill),
         title: ("Archive"),
         activeColorPrimary: AppColors.mainColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.cart_fill),
+        icon: const Icon(CupertinoIcons.cart_fill),
         title: ("Cart"),
         activeColorPrimary: AppColors.mainColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.person),
+        icon: const Icon(CupertinoIcons.person),
         title: ("Me"),
         activeColorPrimary: AppColors.mainColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
@@ -128,11 +128,11 @@ class _HomePageState extends State<HomePage> {
       ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
-      itemAnimationProperties: ItemAnimationProperties( // Navigation Bar's items animation properties.
+      itemAnimationProperties: const ItemAnimationProperties( // Navigation Bar's items animation properties.
         duration: Duration(milliseconds: 200),
         curve: Curves.ease,
       ),
-      screenTransitionAnimation: ScreenTransitionAnimation( // Screen transition animation on change of selected tab.
+      screenTransitionAnimation: const ScreenTransitionAnimation( // Screen transition animation on change of selected tab.
         animateTabTransition: true,
         curve: Curves.ease,
         duration: Duration(milliseconds: 200),

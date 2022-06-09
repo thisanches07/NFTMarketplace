@@ -1,7 +1,11 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:nftmarketplace/controllers/user_controller.dart';
 import 'package:nftmarketplace/data/api/api_client.dart';
+import 'package:nftmarketplace/models/item_insert_model.dart';
+import 'package:nftmarketplace/models/order_insert_model.dart';
 import 'package:nftmarketplace/utils/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,18 +19,36 @@ class CartRepo{
   List<String> cart = [];
   List<String> cartHistory = [];
 
+  late final OrderInsertModel _orderInsertModel = OrderInsertModel();
+
   void addToCartList(List<CartModel> cartList){
-    // sharedPreferences.remove(AppConstants.CART_LIST);
-    // sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
-    var time = DateTime.now().toString();
+    var time = getDate().toString();
     cart=[];
     //convert objects to String because sharedPreferences only accepts strings
-    cartList.forEach((element) {
+    for (var element in cartList) {
       element.time = time;
-      return cart.add(jsonEncode(element));
-    });
+      continue;
+    }
     sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
-    // getCartList();
+  }
+
+  Future<void> addItemToOrder(List<ItemInsertModel> items) async {
+    
+    var time = getDate();
+    final DateFormat formatter = DateFormat('dd/MM/yyyy HH:mm:ss');
+
+    _orderInsertModel.items ??= [];
+
+    Get.find<UserController>().getUserInfo();
+    _orderInsertModel.date = formatter.format(time);
+    _orderInsertModel.userId = Get.find<UserController>().userModel?.id;
+    _orderInsertModel.items = items;
+    Response response = await createOrderList(_orderInsertModel);
+    if (response.statusCode == 201){
+      print("successfully");
+    } else {
+      print(response.body);
+    }
   }
 
   List<CartModel> getCartList(){
@@ -36,7 +58,9 @@ class CartRepo{
     }
     List<CartModel> cartList=[];
 
-    carts.forEach((element) =>cartList.add(CartModel.fromJson(jsonDecode(element))));
+    for (var element in carts) {
+      cartList.add(CartModel.fromJson(jsonDecode(element)));
+    }
 
     return cartList;
   }
@@ -48,7 +72,9 @@ class CartRepo{
     }
     List<CartModel> cartListHistory=[];
 
-    cartHistory.forEach((element) => cartListHistory.add(CartModel.fromJson(jsonDecode(element))));
+    for (var element in cartHistory) {
+      cartListHistory.add(CartModel.fromJson(jsonDecode(element)));
+    }
     return cartListHistory;
   }
 
@@ -76,5 +102,14 @@ class CartRepo{
 
   Future<Response> getOrdersList() async {
     return await apiClient.getData(AppConstants.ORDER_URI);
+  }
+
+  Future<Response> createOrderList(OrderInsertModel orderInsertModel) async {
+    return await apiClient.postData(AppConstants.ORDER_URI, orderInsertModel.toJson());
+  }
+
+  DateTime getDate(){
+    var time = DateTime.now().toLocal();
+    return time;
   }
 }

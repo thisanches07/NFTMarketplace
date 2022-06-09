@@ -1,9 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:nftmarketplace/models/item_insert_model.dart';
 import 'package:nftmarketplace/models/order_model.dart';
 import 'package:nftmarketplace/models/response_model.dart';
 import '../data/repository/cart_repo.dart';
@@ -19,6 +16,9 @@ class CartController extends GetxController {
   Map<int, CartModel> _items = {};
   Map<int, CartModel> get items => _items;
 
+  Map<int, ItemInsertModel> _itemsToOrder = {};
+  Map<int, ItemInsertModel> get itemToOrder => _itemsToOrder;
+
   bool _isLoading = false;
   List<OrderModel>? _orderList;
 
@@ -28,13 +28,26 @@ class CartController extends GetxController {
   //Only for storage and sharedpreferences
   List<CartModel> storageItems=[];
 
-  void addItem(NftModel nft, int quantity) {
-    var totalQuantity = 0;
-    if (_items.containsKey(nft.id!)) {
+  void addItemToOrder(NftModel nft, int quantity) {
+    var totalQuantityItemsToOrder = 0;
+    var totalQuantityItems = 0;
+    if (_itemsToOrder.containsKey(nft.id!) && _items.containsKey(nft.id!)) {
+      _itemsToOrder.update(nft.id!, (value) {
+        totalQuantityItemsToOrder=value.quantity!+quantity;
+        return ItemInsertModel(
+          id: value.id,
+          amount: nft.price! * quantity,
+          quantity: value.quantity! + quantity,
+          nftId: nft.id,
+        );
+      });
+
+      if(totalQuantityItemsToOrder <= 0){
+        _itemsToOrder.remove(nft.id);
+      }
+
       _items.update(nft.id!, (value) {
-
-        totalQuantity=value.quantity!+quantity;
-
+        totalQuantityItems = value.quantity! + quantity;
         return CartModel(
           id: value.id,
           name: value.name,
@@ -47,11 +60,20 @@ class CartController extends GetxController {
         );
       });
 
-      if(totalQuantity<=0){
+      if(totalQuantityItems <= 0){
         _items.remove(nft.id);
       }
+
     } else {
       if(quantity>0){
+        _itemsToOrder.putIfAbsent(nft.id!, () {
+          return ItemInsertModel(
+            id: nft.id,
+            amount: nft.price! * quantity,
+            quantity: quantity,
+            nftId: nft.id,
+          );
+        });
         _items.putIfAbsent(nft.id!, () {
           return CartModel(
             id: nft.id,
@@ -108,6 +130,12 @@ class CartController extends GetxController {
     }).toList();
   }
 
+  List<ItemInsertModel> get getItemsToOrder {
+    return _itemsToOrder.entries.map((e) {
+      return e.value;
+    }).toList();
+  }
+
   double get totalAmount{
     var total=0.0;
 
@@ -149,10 +177,14 @@ class CartController extends GetxController {
     _items = setItems;
   }
 
-  void addToCartList()
-  {
+  void addToCartList() {
     cartRepo.addToCartList(getItems);
-      update();
+    update();
+  }
+
+  void addItemToOrderList(){
+    cartRepo.addItemToOrder(getItemsToOrder);
+    update();
   }
 
   void clearCartHistory(){
@@ -162,7 +194,6 @@ class CartController extends GetxController {
 
   Future<ResponseModel> getOrdersList() async {
     _isLoading = true;
-    update();
     Response response = await cartRepo.getOrdersList();
     late  ResponseModel responseModel;
     if (response.statusCode == 200) {

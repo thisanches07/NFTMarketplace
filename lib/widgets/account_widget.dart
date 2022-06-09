@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nftmarketplace/utils/dimensions.dart';
 import 'package:nftmarketplace/widgets/app_icon.dart';
@@ -31,7 +30,7 @@ class AccountWidget extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             blurRadius: 1,
-            offset: Offset(0, 2),
+            offset: const Offset(0, 2),
             color: Colors.grey.withOpacity(0.2)
           )
         ]

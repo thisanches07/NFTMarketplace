@@ -1,9 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:nftmarketplace/controllers/user_controller.dart';
 import 'package:nftmarketplace/utils/dimensions.dart';
 
@@ -33,15 +31,15 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   void initState(){
     super.initState();
     _loadResource();
-    controller = new AnimationController(
+    controller = AnimationController(
         vsync: this,
         duration: const Duration(seconds: 2))..forward();
 
-    animation = new CurvedAnimation(
+    animation = CurvedAnimation(
         parent: controller,
         curve: Curves.linear);
     Timer(
-      Duration(seconds: 3),
+      const Duration(seconds: 3),
         ()=>Get.offNamed(RouteHelper.getInitial())
     );
   }

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nftmarketplace/utils/colors.dart';
 import 'package:nftmarketplace/utils/dimensions.dart';
@@ -17,7 +16,7 @@ class CustomLoader extends StatelessWidget {
           color: AppColors.mainColor
         ),
         alignment: Alignment.center,
-        child: CircularProgressIndicator(color: Colors.white),
+        child: const CircularProgressIndicator(color: Colors.white),
       ),
     );
   }

@@ -22,10 +22,10 @@ class UserModel {
 
   Map<String, dynamic> toJson(){
     return {
-      "id": this.id,
-      "name": this.name,
-      "username": this.username,
-      "phone": this.phone
+      "id": id,
+      "name": name,
+      "username": username,
+      "phone": phone
     };
   }
 }

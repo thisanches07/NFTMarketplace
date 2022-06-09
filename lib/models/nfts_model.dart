@@ -7,10 +7,10 @@ class Nft {
   List<NftModel> get nfts => _nfts;
 
   Nft({required totalSize, required typeId, required offset, required nfts}) {
-    this._totalSize = totalSize;
-    this._typeId = typeId;
-    this._offset = offset;
-    this._nfts = nfts;
+    _totalSize = totalSize;
+    _typeId = typeId;
+    _offset = offset;
+    _nfts = nfts;
   }
 
   Nft.fromJson(Map<String, dynamic> json) {
@@ -65,14 +65,14 @@ class NftModel {
 
   Map<String, dynamic> toJson() {
     return {
-      "id": this.id,
-      "name": this.name,
-      "price": this.price,
-      "img": this.img,
-      "location": this.location,
-      "createdAt": this.createdAt,
-      "updatedAt": this.updatedAt,
-      "typeId": this.typeId,
+      "id": id,
+      "name": name,
+      "price": price,
+      "img": img,
+      "location": location,
+      "createdAt": createdAt,
+      "updatedAt": updatedAt,
+      "typeId": typeId,
     };
   }
 }

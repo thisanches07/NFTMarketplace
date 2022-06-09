@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 import 'package:nftmarketplace/base/custom_loader.dart';
 import 'package:nftmarketplace/controllers/cart_controller.dart';
+import 'package:nftmarketplace/models/item_insert_model.dart';
+import 'package:nftmarketplace/models/item_model.dart';
 import 'package:nftmarketplace/models/order_model.dart';
 import 'package:nftmarketplace/utils/colors.dart';
 import 'package:nftmarketplace/widgets/app_icon.dart';
@@ -16,15 +16,25 @@ import '../../models/cart_model.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/dimensions.dart';
 
-class CartHistory extends StatelessWidget {
+class CartHistory extends StatefulWidget {
   const CartHistory({Key? key}) : super(key: key);
 
   @override
+  _CartHistory createState() => _CartHistory();
+}
+
+class _CartHistory extends State<CartHistory> {
+
+  @override
   Widget build(BuildContext context) {
-    Get.find<CartController>().getOrdersList();
+    final _cartController = Get.find<CartController>();
+    
+    setState(() {
+      _cartController.getOrdersList();
+    });
 
     Map<String, int> getCartItemsPerOrder(List<OrderModel> listOrders){
-      late Map<String, int> cartItemsPerOrder = Map();
+      late Map<String, int> cartItemsPerOrder = {};
       for (int i = 0; i < listOrders.length; i++) {
           for (int j = 0; j < listOrders[i].items!.length; j++){
             if (cartItemsPerOrder.containsKey(listOrders[i].date)) {
@@ -52,11 +62,10 @@ class CartHistory extends StatelessWidget {
 
     List<List<Widget>> getListImages(List<OrderModel> _orderListModel){
       late List<List<Widget>> _listItemsImage = [];
-      _orderListModel.removeWhere((element) => element.items!.length <= 0);
-      print(_orderListModel);
+      _orderListModel.removeWhere((element) => element.items!.isEmpty);
       for (var e in _orderListModel){
         late List<Widget> _listImages = [];
-        if(e.items!.length > 0){
+        if(e.items!.isNotEmpty){
         for (var el in e.items ?? []){
             _listImages.add(
               Container(
@@ -71,7 +80,7 @@ class CartHistory extends StatelessWidget {
                               Dimensions
                                       .radius15 /
                                   2),
-                      image: DecorationImage(
+                      image: const DecorationImage(
                           fit: BoxFit.cover,
                           image: // el != null ? NetworkImage(el.nft.img.toString()):
                           NetworkImage("https://mrconfeccoes.com.br/wp-content/uploads/2018/03/default.jpg")
@@ -89,8 +98,12 @@ class CartHistory extends StatelessWidget {
     }
 
     return GetBuilder<CartController>(builder: (cartController){
-      var cartHistoryList =
-        cartController.orderList!.reversed.toList();
+      late List<OrderModel> cartHistoryList = [];
+      
+      if (cartController.orderList != null){
+        cartHistoryList = cartController.orderList!.reversed.toList();
+      }
+
       var cartItemsList = getCartItemsPerOrder(cartHistoryList);
       return !cartController.isLoading ? Scaffold(
         body: Column(
@@ -110,7 +123,7 @@ class CartHistory extends StatelessWidget {
                 SizedBox(
                   width: Dimensions.width20 * 5,
                 ),
-                AppIcon(
+                const AppIcon(
                   icon: Icons.shopping_cart,
                   iconColor: Colors.white,
                   backgroundColor: AppColors.mainColor,
@@ -168,7 +181,7 @@ class CartHistory extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    Container(
+                                    SizedBox(
                                       height: Dimensions.height20 * 4,
                                       child: Column(
                                         mainAxisAlignment:
@@ -185,40 +198,24 @@ class CartHistory extends StatelessWidget {
                                                 " Items",
                                             color: AppColors.mainBlackColor,
                                           ),
-                                          GestureDetector(
-                                            onTap: (){
-                                              var orderTime = cartOrderTimeToList(cartItemsList);
-                                              Map<int,CartModel> moreOrder={};
-                                              for(int j=0;j<cartHistoryList.length;j++){
-                                                if(cartHistoryList[j].date == orderTime[i]){
-                                                  moreOrder.putIfAbsent(cartHistoryList[j].id!, () =>
-                                                    CartModel.fromJson(jsonDecode(jsonEncode(cartHistoryList[j])))
-                                                  );
-                                                }
-                                              }
-                                              Get.find<CartController>().setItems = moreOrder;
-                                              Get.find<CartController>().addToCartList();
-                                              Get.toNamed(RouteHelper.getCartPage());
-                                            },
-                                            child: Container(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal:
-                                                  Dimensions.width10 / 2,
-                                                  vertical:
-                                                  Dimensions.height10 / 2),
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                  BorderRadius.circular(
-                                                      Dimensions.radius15 / 3),
-                                                  border: Border.all(
-                                                      width: 1,
-                                                      color: AppColors.mainColor)),
-                                              child: SmallText(
-                                                text: "one more",
-                                                color: AppColors.mainColor,
-                                              ),
+                                          Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal:
+                                                Dimensions.width10 / 2,
+                                                vertical:
+                                                Dimensions.height10 / 2),
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(
+                                                    Dimensions.radius15 / 3),
+                                                border: Border.all(
+                                                    width: 1,
+                                                    color: AppColors.mainColor)),
+                                            child: SmallText(
+                                              text: "paid items",
+                                              color: AppColors.mainColor,
                                             ),
-                                          )
+                                          ),
                                         ],
                                       ),
                                     )
@@ -231,7 +228,7 @@ class CartHistory extends StatelessWidget {
                     ),
                   )))
           ],
-      )):CustomLoader();
+      )):const CustomLoader();
     });
   }
 }

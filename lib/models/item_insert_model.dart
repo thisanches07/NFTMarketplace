@@ -1,33 +1,31 @@
-import 'package:nftmarketplace/models/nfts_model.dart';
-
-class ItemModel {
+class ItemInsertModel {
   int? id;
   double? amount;
   int? quantity;
-  NftModel? nft;
+  int? nftId;
 
-  ItemModel({
+  ItemInsertModel({
     this.id,
     this.amount,
     this.quantity,
-    this.nft,
+    this.nftId,
   });
 
-  factory ItemModel.fromJson(Map<String, dynamic> json){
-    return ItemModel(
+  factory ItemInsertModel.fromJson(Map<String, dynamic> json){
+    return ItemInsertModel(
       id: json["id"],
       amount: json["amount"],
       quantity: json["quantity"],
-      nft: NftModel.fromJson(json['nft'])
+      nftId: json['nft_id']
     );
   }
 
   Map<String, dynamic> toJson(){
     return {
-      "id":id,
+      "id": id,
       "amount":amount,
       "quantity":quantity,
-      "nft" : nft!.toJson()
+      "nft_id" : nftId
     };
   }
 }

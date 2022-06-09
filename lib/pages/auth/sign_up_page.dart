@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -66,13 +65,13 @@ class SignUpPage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: GetBuilder<AuthController>(builder:(_authController){
         return !_authController.isLoading?SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
                     SizedBox(height: Dimensions.screenHeight*0.05),
-                    Container(
+                    SizedBox(
                       height: Dimensions.screenHeight*0.25,
-                      child: Center(
+                      child: const Center(
                         child: CircleAvatar(
                           backgroundColor: Colors.white,
                           radius: 80,
@@ -142,7 +141,7 @@ class SignUpPage extends StatelessWidget {
                   ],
                 ),
               ):
-              CustomLoader();
+              const CustomLoader();
       }),
     );
   }

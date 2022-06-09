@@ -39,7 +39,7 @@ class AuthRepo {
       await sharedPreferences.setString(AppConstants.PHONE, number);
       await sharedPreferences.setString(AppConstants.PASSWORD, password);
     } catch (e){
-      throw e;
+      rethrow;
     }
   }
 

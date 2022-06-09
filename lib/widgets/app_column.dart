@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nftmarketplace/widgets/small_text.dart';
 
@@ -26,22 +25,22 @@ class AppColumn extends StatelessWidget {
           children: [
             Wrap(
               children: List.generate(stars, (index) {
-                return Icon(
+                return const Icon(
                   Icons.star,
                   color: AppColors.mainColor,
                   size: 15,
                 );
               }),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             SmallText(text: "4.5"),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             SmallText(text: "1234"),
-            SizedBox(
+            const SizedBox(
               width: 5,
             ),
             SmallText(text: "comments")
@@ -53,7 +52,7 @@ class AppColumn extends StatelessWidget {
         //Price and Popularity
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
+          children: const [
             IconAndTextWidget(
                 icon: Icons.whatshot_outlined,
                 text: "Rare",

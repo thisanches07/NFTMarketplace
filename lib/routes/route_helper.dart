@@ -15,17 +15,17 @@ class RouteHelper {
   static const String cartPage = '/cart-page';
   static const String signIn = '/sign-in';
 
-  static String getSplashPage()=>'$splashPage';
-  static String getInitial()=>'$initial';
+  static String getSplashPage()=>splashPage;
+  static String getInitial()=>initial;
   static String getPopularNft(int pageId,String page) => '$popularNft?pageId=$pageId&page=$page';
   static String getRecommendedNft(int pageId,String page) => '$recommendedNft?pageId=$pageId&page=$page';
-  static String getCartPage()=>'$cartPage';
-  static String getSignInPage()=>'$signIn';
+  static String getCartPage()=>cartPage;
+  static String getSignInPage()=>signIn;
 
   static List<GetPage> routes = [
-    GetPage(name: splashPage, page: ()=>SplashScreen()),
-    GetPage(name: initial, page: () => HomePage()),
-    GetPage(name: signIn, page: () => SignInPage(), transition: Transition.fade),
+    GetPage(name: splashPage, page: ()=>const SplashScreen()),
+    GetPage(name: initial, page: () => const HomePage()),
+    GetPage(name: signIn, page: () => const SignInPage(), transition: Transition.fade),
     GetPage(
         name: popularNft,
         page: () {
@@ -45,7 +45,7 @@ class RouteHelper {
         transition:Transition.fadeIn
     ),
     GetPage(name: cartPage, page: (){
-      return CartPage();
+      return const CartPage();
     },
     transition: Transition.fadeIn)
   ];

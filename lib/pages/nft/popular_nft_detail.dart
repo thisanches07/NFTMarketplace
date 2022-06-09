@@ -56,7 +56,7 @@ class PopularNftDetail extends StatelessWidget {
                       }
                     },
                     child:
-                    AppIcon(icon: Icons.clear)
+                    const AppIcon(icon: Icons.clear)
                 ),
                 GetBuilder<PopularNftController>(builder: (controller) {
                   return GestureDetector(
@@ -66,9 +66,9 @@ class PopularNftDetail extends StatelessWidget {
                     },
                     child: Stack(
                         children: [
-                          AppIcon(icon: Icons.shopping_cart_outlined),
+                          const AppIcon(icon: Icons.shopping_cart_outlined),
                           controller.totalItems>=1?
-                    Positioned(
+                    const Positioned(
                     right:0,top:0,
                     child: AppIcon(icon: Icons.circle,size:22,
                     iconColor: Colors.transparent,backgroundColor: AppColors.mainColor,),
@@ -156,7 +156,7 @@ class PopularNftDetail extends StatelessWidget {
                             onTap: () {
                               popularNft.setQuantity(false);
                             },
-                            child: Icon(
+                            child: const Icon(
                               Icons.remove, color: AppColors.signColor,)),
                         SizedBox(width: Dimensions.width10 / 2,),
                         BigText(text: popularNft.inCartItems.toString()),
@@ -165,7 +165,7 @@ class PopularNftDetail extends StatelessWidget {
                             onTap: () {
                               popularNft.setQuantity(true);
                             },
-                            child: Icon(
+                            child: const Icon(
                               Icons.add, color: AppColors.signColor,)),
                       ],
                     ),

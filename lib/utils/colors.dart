@@ -1,16 +1,16 @@
 import 'dart:ui';
 
 class AppColors{
-  static final Color mainColor = const Color(0xFF65249a);
-  static final Color mainBlackColor = const Color(0xFF332d2b);
-  static final Color textColor = const Color(0xFFccc75c5);
-  static final Color heartColor = const Color(0xFFff3838);
-  static final Color starColor = const Color(0xFFfbaa1a);
-  static final Color moneyColor = const Color(0xFF3ae374);
-  static final Color ageColor = const Color(0xFF712ac1);
-  static final Color backgroundColor = const Color(0xFFFFFFFF);
-  static final Color signColor = const Color(0xFFE5E5E5);
-  static final Color paraColor = const Color(0xFF9F9F9F);
-  static final Color purpleColor = const Color(0xFF3600E5);
-  static final Color blackColor = const Color(0xFF000000);
+  static const Color mainColor = Color(0xFF65249a);
+  static const Color mainBlackColor = Color(0xFF332d2b);
+  static const Color textColor = Color(0xffccc75c5);
+  static const Color heartColor = Color(0xFFff3838);
+  static const Color starColor = Color(0xFFfbaa1a);
+  static const Color moneyColor = Color(0xFF3ae374);
+  static const Color ageColor = Color(0xFF712ac1);
+  static const Color backgroundColor = Color(0xFFFFFFFF);
+  static const Color signColor = Color(0xFFE5E5E5);
+  static const Color paraColor = Color(0xFF9F9F9F);
+  static const Color purpleColor = Color(0xFF3600E5);
+  static const Color blackColor = Color(0xFF000000);
 }

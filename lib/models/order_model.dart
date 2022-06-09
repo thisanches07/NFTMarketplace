@@ -26,10 +26,10 @@ class OrderModel {
 
   Map<String, dynamic> toJson(){
     return {
-      "id": this.id,
-      "user": this.user!.toJson(),
-      "date": this.date,
-      "items" : this.items!.map((e) => e.toJson())
+      "id": id,
+      "user": user!.toJson(),
+      "date": date,
+      "items" : items!.map((e) => e.toJson())
     };
   }
 }

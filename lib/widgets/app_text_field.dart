@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nftmarketplace/utils/colors.dart';
 import 'package:nftmarketplace/utils/dimensions.dart';
@@ -28,7 +27,7 @@ class AppTextField extends StatelessWidget {
           BoxShadow(
             blurRadius: 3,
             spreadRadius: 1,
-            offset: Offset(1, 1),
+            offset: const Offset(1, 1),
             color: Colors.grey.withOpacity(0.2)
           )
         ]
@@ -41,14 +40,14 @@ class AppTextField extends StatelessWidget {
           prefixIcon: Icon(icon, color: AppColors.mainColor),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(Dimensions.radius15),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               width: 1.0,
               color: Colors.white,
             ),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(Dimensions.radius15),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               width: 1.0,
               color: Colors.white,
             ),

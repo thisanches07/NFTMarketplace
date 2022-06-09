@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -51,13 +50,13 @@ class SignInPage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: GetBuilder<AuthController>(builder: (_authController){
         return !_authController.isLoading?SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
               SizedBox(height: Dimensions.screenHeight*0.05),
-              Container(
+              SizedBox(
                 height: Dimensions.screenHeight*0.25,
-                child: Center(
+                child: const Center(
                   child: CircleAvatar(
                     backgroundColor: Colors.white,
                     radius: 80,
@@ -145,7 +144,7 @@ class SignInPage extends StatelessWidget {
               SizedBox(height: Dimensions.height20),
               RichText(
                 text: TextSpan(
-                  text: "Don\'t have am account? ",
+                  text: "Don't have am account? ",
                   style: TextStyle(
                     color: Colors.grey[500],
                     fontSize: Dimensions.font20,
@@ -153,7 +152,7 @@ class SignInPage extends StatelessWidget {
                   ),
                   children: [
                     TextSpan(
-                      recognizer: TapGestureRecognizer()..onTap=()=>Get.to(() => SignUpPage(), transition: Transition.fade),
+                      recognizer: TapGestureRecognizer()..onTap=()=>Get.to(() => const SignUpPage(), transition: Transition.fade),
                       text: "Create",
                       style: TextStyle(
                         color: AppColors.mainBlackColor,
@@ -167,7 +166,7 @@ class SignInPage extends StatelessWidget {
               SizedBox(height: Dimensions.height30),
             ],
           ),
-        ):CustomLoader();
+        ):const CustomLoader();
       })
     );
   }

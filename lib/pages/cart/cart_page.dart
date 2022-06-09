@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nftmarketplace/base/no_data_page.dart';
@@ -14,8 +13,14 @@ import '../../controllers/recommended_nft_controller.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/dimensions.dart';
 
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);
+
+  @override
+  _CartPage createState() => _CartPage();
+
+}
+class _CartPage extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +68,7 @@ class CartPage extends StatelessWidget {
                   ],
                 )),
             GetBuilder<CartController>(builder: (_cartController) {
-              return _cartController.getItems.length>0?Positioned(
+              return _cartController.getItems.isNotEmpty?Positioned(
                   top: Dimensions.height20 * 4,
                   left: Dimensions.width20,
                   right: Dimensions.width20,
@@ -79,7 +84,7 @@ class CartPage extends StatelessWidget {
                         return ListView.builder(
                             itemCount: _cartList.length,
                             itemBuilder: (_, index) {
-                              return Container(
+                              return SizedBox(
                                 width: double.maxFinite,
                                 height: Dimensions.height20 * 5,
                                 child: Row(
@@ -93,7 +98,6 @@ class CartPage extends StatelessWidget {
                                           if (popularIndex >= 0) {
                                             Get.toNamed(RouteHelper.getPopularNft(popularIndex,"cartpage"));
                                           } else {
-                                            print("aqui");
                                             var recommendedIndex =
                                             Get.find<RecommendedNftController>()
                                                 .recommendedNftList
@@ -126,7 +130,7 @@ class CartPage extends StatelessWidget {
                                       width: Dimensions.width10,
                                     ),
                                     Expanded(
-                                        child: Container(
+                                        child: SizedBox(
                                           height: Dimensions.height20 * 5,
                                           child: Column(
                                             crossAxisAlignment:
@@ -165,11 +169,11 @@ class CartPage extends StatelessWidget {
                                                       children: [
                                                         GestureDetector(
                                                             onTap: () {
-                                                              cartController.addItem(
+                                                              cartController.addItemToOrder(
                                                                   _cartList[index].nft!,
                                                                   -1);
                                                             },
-                                                            child: Icon(
+                                                            child: const Icon(
                                                               Icons.remove,
                                                               color:
                                                               AppColors.signColor,
@@ -187,11 +191,11 @@ class CartPage extends StatelessWidget {
                                                         ),
                                                         GestureDetector(
                                                             onTap: () {
-                                                              cartController.addItem(
+                                                              cartController.addItemToOrder(
                                                                   _cartList[index].nft!,
                                                                   1);
                                                             },
-                                                            child: Icon(
+                                                            child: const Icon(
                                                               Icons.add,
                                                               color:
                                                               AppColors.signColor,
@@ -210,13 +214,13 @@ class CartPage extends StatelessWidget {
                             });
                       }),
                     ),
-                  )):NoDataPage(text: "Your cart is empty");
+                  )):const NoDataPage(text: "Your cart is empty");
             })
           ],
         ),
         bottomNavigationBar: GetBuilder<CartController>(
             builder: (cartController) {
-              return Container(
+              return cartController.getItems.isNotEmpty ? Container(
                 height: Dimensions.bottomHeightBar,
                 padding: EdgeInsets.only(top: Dimensions.height20,
                     bottom: Dimensions.height20,
@@ -229,7 +233,7 @@ class CartPage extends StatelessWidget {
                         topRight: Radius.circular(Dimensions.radius20 * 2)
                     )
                 ),
-                child: cartController.getItems.length>0?Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
@@ -258,6 +262,7 @@ class CartPage extends StatelessWidget {
                         if(Get.find<AuthController>().userLoggedIn()){
                           //popularNft.addItem(nft);
                           cartController.addToHistory();
+                          cartController.addItemToOrderList();
                         } else {
                           Get.toNamed(RouteHelper.getSignInPage());
                         }
@@ -277,8 +282,8 @@ class CartPage extends StatelessWidget {
                       ),
                     )
                   ],
-                ):Container(),
-              );
+                ),
+              ): Container(height: 0);
             })
     );
   }
