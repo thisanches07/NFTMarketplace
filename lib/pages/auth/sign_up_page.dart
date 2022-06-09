@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:nftmarketplace/base/custom_loader.dart';
 import 'package:nftmarketplace/base/show_custom_message.dart';
 import 'package:nftmarketplace/controllers/auth_controller.dart';
@@ -60,7 +61,6 @@ class SignUpPage extends StatelessWidget {
       passwordController.clear();
       phoneController.clear();
     }
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: GetBuilder<AuthController>(builder:(_authController){
@@ -84,7 +84,8 @@ class SignUpPage extends StatelessWidget {
                     AppTextField(
                       textController: usernameController,
                       hintText: "Email",
-                      icon: Icons.email
+                      icon: Icons.email,
+                      keyboardType: TextInputType.emailAddress,
                     ),
                     SizedBox(height: Dimensions.height20),
                     AppTextField(
@@ -103,7 +104,15 @@ class SignUpPage extends StatelessWidget {
                     AppTextField(
                       textController: phoneController,
                       hintText: "Phone",
-                      icon: Icons.phone
+                      icon: Icons.phone,
+                      keyboardType: TextInputType.phone,
+                      formatter: [
+                        MaskTextInputFormatter(
+                          mask: '+## (##) #####-####', 
+                          filter: { "#": RegExp(r'[0-9]') },
+                          type: MaskAutoCompletionType.lazy
+                        )
+                      ],
                     ),
                     SizedBox(height: Dimensions.height20+Dimensions.height20),
                     GestureDetector(

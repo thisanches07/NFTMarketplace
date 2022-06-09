@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nftmarketplace/utils/colors.dart';
 import 'package:nftmarketplace/utils/dimensions.dart';
 
@@ -7,13 +8,17 @@ class AppTextField extends StatelessWidget {
   final String hintText;
   final IconData icon;
   bool isObscure;
+  TextInputType keyboardType;
+  List<TextInputFormatter>? formatter;
 
   AppTextField({
     Key? key,
     required this.textController,
     required this.hintText,
     required this.icon,
-    this.isObscure=false
+    this.isObscure=false,
+    this.keyboardType=TextInputType.text,
+    this.formatter
   }) : super(key: key);
 
   @override
@@ -35,6 +40,8 @@ class AppTextField extends StatelessWidget {
       child:  TextField(
         obscureText: isObscure,
         controller: textController,
+        keyboardType: keyboardType,
+        inputFormatters: formatter,
         decoration: InputDecoration(
           hintText: hintText,
           prefixIcon: Icon(icon, color: AppColors.mainColor),
