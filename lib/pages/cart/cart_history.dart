@@ -80,9 +80,9 @@ class _CartHistory extends State<CartHistory> {
                               Dimensions
                                       .radius15 /
                                   2),
-                      image: const DecorationImage(
+                      image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: // el != null ? NetworkImage(el.nft.img.toString()):
+                          image: el != null ? NetworkImage(el.nft.img.toString()) :
                           NetworkImage("https://mrconfeccoes.com.br/wp-content/uploads/2018/03/default.jpg")
                       ),
                   )
