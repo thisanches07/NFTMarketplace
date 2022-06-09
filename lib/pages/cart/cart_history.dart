@@ -104,7 +104,6 @@ class _CartHistory extends State<CartHistory> {
         cartHistoryList = cartController.orderList!.reversed.toList();
       }
 
-      var cartItemsList = getCartItemsPerOrder(cartHistoryList);
       return !cartController.isLoading ? Scaffold(
         body: Column(
         children: [
@@ -140,10 +139,10 @@ class _CartHistory extends State<CartHistory> {
                   child: MediaQuery.removePadding(
                     removeTop: true,
                     context: context,
-                    child: ListView(
-                      children: [
-                        for (int i = 0; i < cartItemsList.length; i++)
-                          Container(
+                    child: ListView.separated(
+                      itemBuilder: (context, index){
+                        var _cartItemsList = getCartItemsPerOrder(cartHistoryList).obs;
+                        return Container(
                             height: Dimensions.height30 * 4,
                             margin: EdgeInsets.only(bottom: Dimensions.height20),
                             child: Column(
@@ -176,7 +175,7 @@ class _CartHistory extends State<CartHistory> {
                                           child:
                                             Wrap(
                                               direction: Axis.horizontal,
-                                              children: getListImages(cartHistoryList)[i].toList(),
+                                              children: getListImages(cartHistoryList)[index].toList(),
                                             ),
                                         ),
                                       ),
@@ -194,7 +193,7 @@ class _CartHistory extends State<CartHistory> {
                                             color: AppColors.mainBlackColor,
                                           ),
                                           BigText(
-                                            text: cartItemsPerOrderToList(cartItemsList)[i].toString() +
+                                            text: cartItemsPerOrderToList(_cartItemsList)[index].toString() +
                                                 " Items",
                                             color: AppColors.mainBlackColor,
                                           ),
@@ -223,8 +222,13 @@ class _CartHistory extends State<CartHistory> {
                                 )
                               ],
                             ),
-                          )
-                      ],
+                          );
+                      },
+                      separatorBuilder: (context, index) => SizedBox(height: Dimensions.height10/2),
+                      itemCount: getCartItemsPerOrder(cartHistoryList).length,
+                      // children: [
+                      //   for (int i = 0; i < cartItemsList.length; i++)
+                      // ],
                     ),
                   )))
           ],
