@@ -80,8 +80,7 @@ class PopularNftController extends GetxController {
     _cart.addItemToOrder(nft, _quantity);
     _quantity = 0;
     _inCartItems = _cart.getQuantity(nft);
-    _cart.items.forEach((key, value) {
-    });
+    _cart.items.forEach((key, value) {});
     update();
   }
 

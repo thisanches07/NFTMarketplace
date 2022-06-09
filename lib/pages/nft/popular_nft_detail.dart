@@ -52,7 +52,7 @@ class PopularNftDetail extends StatelessWidget {
                       if(page == "cartpage"){
                         Get.toNamed(RouteHelper.getCartPage());
                       }else{
-                        Get.back();
+                        Get.offAndToNamed(RouteHelper.getInitial());
                       }
                     },
                     child:
@@ -62,7 +62,7 @@ class PopularNftDetail extends StatelessWidget {
                   return GestureDetector(
                     onTap: (){
                       // if(controller.totalItems>=1)
-                      Get.toNamed(RouteHelper.getCartPage());
+                      Get.offAndToNamed(RouteHelper.getCartPage());
                     },
                     child: Stack(
                         children: [

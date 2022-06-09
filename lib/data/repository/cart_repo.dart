@@ -6,6 +6,7 @@ import 'package:nftmarketplace/controllers/user_controller.dart';
 import 'package:nftmarketplace/data/api/api_client.dart';
 import 'package:nftmarketplace/models/item_insert_model.dart';
 import 'package:nftmarketplace/models/order_insert_model.dart';
+import 'package:nftmarketplace/models/response_model.dart';
 import 'package:nftmarketplace/utils/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -32,7 +33,7 @@ class CartRepo{
     sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
   }
 
-  Future<void> addItemToOrder(List<ItemInsertModel> items) async {
+  Future<ResponseModel> addItemToOrder(List<ItemInsertModel> items) async {
     
     var time = getDate();
     final DateFormat formatter = DateFormat('dd/MM/yyyy HH:mm:ss');
@@ -45,9 +46,9 @@ class CartRepo{
     _orderInsertModel.items = items;
     Response response = await createOrderList(_orderInsertModel);
     if (response.statusCode == 201){
-      print("successfully");
+      return ResponseModel(true, "successfully");
     } else {
-      print(response.body);
+      return ResponseModel(true, response.body["message"]);
     }
   }
 

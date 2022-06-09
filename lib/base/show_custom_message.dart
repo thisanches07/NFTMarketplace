@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nftmarketplace/utils/colors.dart';
 import 'package:nftmarketplace/widgets/big_text.dart';
 
 void showCustomSnackBar(String message, {bool isError=true, String title="Error"}){
@@ -18,6 +19,6 @@ void showCustomSnackBar(String message, {bool isError=true, String title="Error"
     ),
     colorText: Colors.white,
     snackPosition: SnackPosition.TOP,
-    backgroundColor: Colors.redAccent
+    backgroundColor: isError ? Colors.redAccent : AppColors.mainColor
   );
 }

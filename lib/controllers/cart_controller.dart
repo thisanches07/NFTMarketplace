@@ -182,9 +182,12 @@ class CartController extends GetxController {
     update();
   }
 
-  void addItemToOrderList(){
-    cartRepo.addItemToOrder(getItemsToOrder);
+  Future<ResponseModel> addItemToOrderList() async {
+    _isLoading = true;
+    ResponseModel respose = await cartRepo.addItemToOrder(getItemsToOrder);
+    _isLoading = false;
     update();
+    return respose;
   }
 
   void clearCartHistory(){

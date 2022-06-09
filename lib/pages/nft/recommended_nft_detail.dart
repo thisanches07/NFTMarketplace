@@ -36,7 +36,7 @@ class RecommendedNftDetail extends StatelessWidget {
                       if(page == "cartpage"){
                         Get.toNamed(RouteHelper.getCartPage());
                       }else{
-                        Get.back();
+                        Get.offAndToNamed(RouteHelper.getInitial());
                       }
                     },
                     child: const AppIcon(icon: Icons.clear),

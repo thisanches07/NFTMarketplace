@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nftmarketplace/base/custom_loader.dart';
 import 'package:nftmarketplace/base/no_data_page.dart';
+import 'package:nftmarketplace/base/show_custom_message.dart';
 import 'package:nftmarketplace/controllers/auth_controller.dart';
+import 'package:nftmarketplace/models/response_model.dart';
 import 'package:nftmarketplace/utils/colors.dart';
 import 'package:nftmarketplace/widgets/app_icon.dart';
 import 'package:nftmarketplace/widgets/big_text.dart';
@@ -22,6 +25,16 @@ class CartPage extends StatefulWidget {
 }
 class _CartPage extends State<CartPage> {
 
+  Future<void> sendData(CartController controller) async{
+    controller.addToHistory();
+    ResponseModel response = await controller.addItemToOrderList();
+    if (!response.isSuccess){
+      showCustomSnackBar(response.message, title: "Order");
+    } else {
+      showCustomSnackBar(response.message, isError: false, title: "Order");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +49,7 @@ class _CartPage extends State<CartPage> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Get.back();
+                        Get.offAndToNamed(Get.previousRoute);
                       },
                       child: AppIcon(
                         icon: Icons.arrow_back_ios,
@@ -50,7 +63,7 @@ class _CartPage extends State<CartPage> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Get.back();
+                        Get.offAndToNamed(RouteHelper.getInitial());
                       },
                       child: AppIcon(
                         icon: Icons.home_outlined,
@@ -220,7 +233,7 @@ class _CartPage extends State<CartPage> {
         ),
         bottomNavigationBar: GetBuilder<CartController>(
             builder: (cartController) {
-              return cartController.getItems.isNotEmpty ? Container(
+              return  !cartController.isLoading ? cartController.getItems.isNotEmpty ? Container(
                 height: Dimensions.bottomHeightBar,
                 padding: EdgeInsets.only(top: Dimensions.height20,
                     bottom: Dimensions.height20,
@@ -261,8 +274,7 @@ class _CartPage extends State<CartPage> {
                       onTap: () {
                         if(Get.find<AuthController>().userLoggedIn()){
                           //popularNft.addItem(nft);
-                          cartController.addToHistory();
-                          cartController.addItemToOrderList();
+                          sendData(cartController);
                         } else {
                           Get.toNamed(RouteHelper.getSignInPage());
                         }
@@ -283,7 +295,7 @@ class _CartPage extends State<CartPage> {
                     )
                   ],
                 ),
-              ): Container(height: 0);
+              ): Container(height: 0): CustomLoader();
             })
     );
   }
