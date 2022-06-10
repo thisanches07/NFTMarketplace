@@ -27,7 +27,7 @@
 * Lógica de compras
 
 ### APK
-* Nosso apk está disponível para download neste [Link](https://drive.google.com/drive/folders/1BVJjBk4P25jJvoB73BCifYwDRaXzVtzb?usp=sharing)
+* Nosso apk está disponível para download neste [Link](https://drive.google.com/file/d/1uwMqqF0hQgZ5F6_Ohff5UirRRoWrT-cw/view?usp=sharing)
 
 ### API externa
 * [NFTMarketplaceApi](https://github.com/thisanches07/NFTMarketplaceApi)
