@@ -26,6 +26,9 @@
 * Busca de NFTs na API externa
 * Lógica de compras
 
+### APK
+* Nosso apk está disponível para download neste [Link](https://drive.google.com/drive/folders/1BVJjBk4P25jJvoB73BCifYwDRaXzVtzb?usp=sharing)
+
 ### API externa
 * [NFTMarketplaceApi](https://github.com/thisanches07/NFTMarketplaceApi)
 
